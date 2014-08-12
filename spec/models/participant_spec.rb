@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 describe Participant do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:event)}
+  it { should belong_to(:student)}
 end

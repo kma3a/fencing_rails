@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 describe TeamStudent do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:team)}
+  it { should belong_to(:student)}
 end

@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 describe Event do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:team)}
+  it { should have_many(:participants)}
+  it { should have_many(:students).through(:participants)}
 end

@@ -4,6 +4,9 @@ class Coach < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :team_coaches
+  has_many :teams, through: :team_coaches
+
   def sign_in
     default_params.permit(:name, :email)
   end

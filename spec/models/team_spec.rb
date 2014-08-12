@@ -1,5 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Team, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Team do
+  it { should belong_to(:headcoach)}
+  it { should have_many(:team_coaches)}
+  it { should have_many(:coaches).through(:team_coaches)}
+  it { should have_many(:team_students)}
+  it { should have_many(:students).through(:team_students)}
+  it { should have_many(:events)}
 end

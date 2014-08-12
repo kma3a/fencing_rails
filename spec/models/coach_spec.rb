@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Coach, :type => :model do
-  
+describe Coach do
+  it {should have_many(:teams)}  
 end

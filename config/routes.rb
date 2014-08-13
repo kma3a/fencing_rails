@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :coaches
   devise_for :headcoaches
+
+  resources :headcoaches, :only => [:show]
+  resources :coaches, :only => [:show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

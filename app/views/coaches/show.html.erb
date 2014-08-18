@@ -1,0 +1,10 @@
+<h1> Welcome <%= @coach.name %>!</h1>
+
+<div>
+  <h4> Your Teams </h4>
+  <ul>
+   <% @coach.teams.each do |team| %>
+      <li><%= team.name %></li>
+   <%end%>
+  </ul>
+</div>

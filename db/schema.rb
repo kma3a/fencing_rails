@@ -17,13 +17,13 @@ ActiveRecord::Schema.define(version: 20140808212915) do
   enable_extension "plpgsql"
 
   create_table "coaches", force: true do |t|
-    t.string   "name",                   default: "Coach", null: false
-    t.string   "email",                  default: "",      null: false
-    t.string   "encrypted_password",     default: "",      null: false
+    t.string   "name",                                null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,       null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(version: 20140808212915) do
   end
 
   create_table "headcoaches", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "encrypted_password"
+    t.string   "name",                            null: false
+    t.string   "email",              default: "", null: false
+    t.string   "encrypted_password", default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

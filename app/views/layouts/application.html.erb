@@ -7,7 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<% if coach_signed_in? %>
+  <%= link_to "Edit Profile", edit_coach_registration_path(current_coach.id)%>
+  <%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %>
+<% end %>
+<% if headcoach_signed_in? %>
+  <%= link_to "Sign Out", destroy_headcoach_session_path, :method => :delete %>
+  <%= link_to "Edit Profile", edit_headcoach_registration_path(current_headcoach.id)%>
+<% end %>
 <%= yield %>
 
 </body>

@@ -5,6 +5,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :authenticate_coach!, :except => [:show, :index]
   before_filter :authenticate_headcoach!, :except => [:show, :index]
+  
+  def after_sign_in_path_for(resource)
+    if headcoach_signed_in?
+      headcoach_path(current_headcoach.id)
+    elsif coach_signed_in?
+      coach_path(current_coach.id)
+    else
+      root_path
+    end
+  end
 
   protected
 

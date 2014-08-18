@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(version: 20140808212915) do
   end
 
   create_table "headcoaches", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "encrypted_password"
+    t.string   "name",               default: "Coach", null: false
+    t.string   "email",              default: "",      null: false
+    t.string   "encrypted_password", default: "",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

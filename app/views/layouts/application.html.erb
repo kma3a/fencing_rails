@@ -7,7 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<% if coach_signed_in? %>
+  <%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %>
+<% end %>
+<% if headcoach_signed_in? %>
+  <%= link_to "Sign Out", destroy_headcoach_session_path, :method => :delete %>
+<% end %>
 <%= yield %>
 
 </body>

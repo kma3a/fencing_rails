@@ -5,7 +5,8 @@ class TeamsController < ApplicationController
   end
   
   def create
-    @team = Team.create(name: params[:name], headcoach_id: current_headcoach.id)
+    p params
+    @team = Team.create(name: params[:team][:name], headcoach_id: current_headcoach.id)
     if @team
       redirect_to headcoach_path(current_headcoach.id)
     else

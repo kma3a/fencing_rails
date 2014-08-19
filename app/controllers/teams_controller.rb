@@ -13,6 +13,10 @@ class TeamsController < ApplicationController
     end
   end
 
+  def edit
+    @team = Team.find(params[:id])
+  end
+
   def destroy
     p params
     @team = Team.find(params[:id])

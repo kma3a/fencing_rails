@@ -39,7 +39,7 @@ gem 'devise'
 # gem 'debugger', group: [:development, :test]
 
 group :development, :test do
-  gem 'rspec-rails', '~>3.0.0.beta'
+  gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
   gem 'sqlite3'
 end

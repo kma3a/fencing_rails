@@ -1,7 +1,5 @@
 language: ruby
 rvm:
   - "2.1.1"
-env:
-  - DB=postgresql
 script:
   - bundle exec rspec spec

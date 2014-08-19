@@ -12,5 +12,3 @@ before_script:
   - psql -c 'create database virtual_test' -U postgres
   - psql -c 'CREATE EXTENSION hstore' -U postgres
 bundler_args: --binstubs=./bundler_stubs
-before_install:
-  - bundle update debugger-ruby_core_source

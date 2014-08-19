@@ -39,6 +39,6 @@ gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers'
   gem 'sqlite3'
 end

@@ -4,7 +4,8 @@
   <h3>Your Teams</h3>
     <ul>
       <%  @headcoach.teams.each do |team| %>
-      <li><%=team.name %></li>
+      <li><%=team.name %> <%= link_to "Edit", edit_team_path(team.id)%> <%= link_to "Delete", team_path(team.id), method: :delete %> </li>
       <% end %>
     </ul>
+    <%= link_to "Create Team", new_team_path %>
 </div>

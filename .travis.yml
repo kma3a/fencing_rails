@@ -11,4 +11,3 @@ before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database virtual_test' -U postgres
   - psql -c 'CREATE EXTENSION hstore' -U postgres
-bundler_args: --binstubs=./bundler_stubs

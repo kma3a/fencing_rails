@@ -1,16 +1,13 @@
 require 'rails_helper'
 
-describe CoachesController do
-  before(:each) do
-    
-  end
+RSpec.describe CoachesController, :type => :controller do
+  let(:coach) {Coach.create({name: 'matt', email: 'vanillabear@google.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
 
-  describe '#show' do
+  before {sign_in coach}
+  describe 'GET #show' do
     it 'renders a post' do
-      coach = double(:coach)
-      Coach.should_receive(:find).with("1").and_return(coach)
-      get :show, :id => "1"
-      expect(assigns(:user)).to eq coach
+      get :show, id: coach 
+      expect(assigns(:coach)).to eq coach
     end
   end
 end

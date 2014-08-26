@@ -45,6 +45,11 @@ RSpec.describe TeamsController, :type => :controller do
       get 'new'
       assigns(:team).should be_a_kind_of(Team)
     end
+
+    it 'should be a new record' do
+      get 'new'
+      assigns(:team).should be_new_record
+    end
    end
 
 

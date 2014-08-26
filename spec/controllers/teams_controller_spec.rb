@@ -28,9 +28,24 @@ RSpec.describe TeamsController, :type => :controller do
       end
     end
   end
+  
+  describe 'PUt update' do
+    before :each do
+      @team = Team.create!({name:"Otters", headcoach_id: 1})
+    end
+
+    context 'valit attribute' do
+      subject {put :update, id: @team, team:{name:"Otters", headcoach_id: 1}}
+    end
+
+  end
 
   describe 'GET #new' do
-  end
+    it 'located requested @team' do
+      get 'new'
+      assigns(:team).should be_a_kind_of(Team)
+    end
+   end
 
 
  end

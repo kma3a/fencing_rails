@@ -6,7 +6,6 @@ class TeamsController < ApplicationController
   
   def create
     @team = Team.new(name: params[:team][:name], headcoach_id: current_headcoach.id)
-    p @team
     if @team.save
       redirect_to headcoach_path(current_headcoach.id)
     else

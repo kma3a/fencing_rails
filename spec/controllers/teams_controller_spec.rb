@@ -43,12 +43,12 @@ RSpec.describe TeamsController, :type => :controller do
   describe 'GET #new' do
     it 'located requested @team' do
       get 'new'
-      assigns(:team).should be_a_kind_of(Team)
+      expect(assigns(:team)).to be_a_kind_of(Team)
     end
 
     it 'should be a new record' do
       get 'new'
-      assigns(:team).should be_new_record
+      expect(assigns(:team)).to be_a_new(Team)
     end
    end
 

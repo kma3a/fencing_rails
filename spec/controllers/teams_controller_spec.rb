@@ -33,9 +33,13 @@ RSpec.describe TeamsController, :type => :controller do
     let(:team) {Team.create({name:"Otters", headcoach_id: 1})}
     before(:each) { get :edit, id: team.id}
 
-      it 'should assign @team' do
-       expect(assigns(:team)).to eq(team)
-      end
+    it 'should assign @team' do
+      expect(assigns(:team)).to eq(team)
+    end
+
+    it 'renders the #edit view' do
+      expect(response).to render_template(:edit)
+    end
 
   end
 

@@ -7,4 +7,5 @@ describe Team do
   it { should have_many(:team_students)}
   it { should have_many(:students).through(:team_students)}
   it { should have_many(:events)}
+  it { should validate_presence_of(:name)}
 end

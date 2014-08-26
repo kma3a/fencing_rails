@@ -29,14 +29,13 @@ RSpec.describe TeamsController, :type => :controller do
     end
   end
   
-  describe 'PUt update' do
-    before :each do
-      @team = Team.create!({name:"Otters", headcoach_id: 1})
-    end
+  describe 'GET #edit' do
+    let(:team) {Team.create({name:"Otters", headcoach_id: 1})}
+    before(:each) { get :edit, id: team.id}
 
-    context 'valit attribute' do
-      subject {put :update, id: @team, team:{name:"Otters", headcoach_id: 1}}
-    end
+      it 'should assign @team' do
+       expect(assigns(:team)).to eq(team)
+      end
 
   end
 

@@ -22,6 +22,10 @@ RSpec.describe TeamsController, :type => :controller do
       it ' should not save the new team' do
         expect{subject}.to_not change(Team,:count)
       end
+
+      it 're-render new' do
+        expect(subject).to render_template("teams/new")
+      end
     end
   end
 

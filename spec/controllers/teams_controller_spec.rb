@@ -12,7 +12,7 @@ RSpec.describe TeamsController, :type => :controller do
       end
 
       it 'redirects to the new contact' do
-        expect(subject).to redirect_to("/headcoaches/#{assigns(:team).headcoach.id}")
+        expect(subject).to redirect_to("/headcoaches/#{assigns(:team).headcoach_id}")
       end
     end
 
@@ -56,12 +56,25 @@ RSpec.describe TeamsController, :type => :controller do
    end
 
    describe 'PUT #update' do
-    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
-     before(:each) { put :update, id: @team.id, team: {name:"Otters", headcoach_id: headcoach.id}}
+     context 'valid attributes' do
+       before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+  
+       it 'should assign @team' do
+         put :update, id: @team.id, team: {name:"otters", headcoach_id: headcoach.id}
+         expect(assigns(:team)).to eq(@team)
+       end
 
-    it 'should assign @team' do
-      expect(assigns(:team)).to eq(@team)
-    end
+       it "changes @team's attributes" do
+        put :update, id: @team.id, team: {name:"Fighting Otters", headcoach_id: headcoach.id}
+        @team.reload
+        expect(@team.name).to eq("Fighting Otters")
+       end
+
+       it 'redirects to the headcoach page' do
+        put :update, id: @team.id, team: {name:"Fighting Otters", headcoach_id: headcoach.id}
+        expect(response).to redirect_to("/headcoaches/#{assigns(:team).headcoach_id}")
+       end
+     end
 
    end
 

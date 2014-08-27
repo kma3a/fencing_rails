@@ -4,6 +4,14 @@ RSpec.describe TeamsController, :type => :controller do
   let(:headcoach) {Headcoach.create({name: 'matt', email: 'vanillabear@google.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
 
   before {sign_in headcoach}
+
+  describe 'GET #show' do
+     let(:team) {Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    before(:each) { get :show, id: team.id}
+    it 'assigns the requested team' do
+      expect(assigns(:team)).to eq(team)
+    end
+  end
   describe 'POST #create' do
     context 'valid attributes' do
     subject {post :create, team: {name: 'Fighting Otters', headcoah_id: headcoach.id} }

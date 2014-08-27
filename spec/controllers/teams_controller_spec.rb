@@ -6,7 +6,7 @@ RSpec.describe TeamsController, :type => :controller do
   before {sign_in headcoach}
   describe 'POST #create' do
     context 'valid attributes' do
-    subject {post :create, team: {name: 'Fighting Otters', headcoah_id: 1} }
+    subject {post :create, team: {name: 'Fighting Otters', headcoah_id: headcoach.id} }
       it "should create a team" do
         expect{subject}.to change(Team,:count).by(1)
       end
@@ -17,7 +17,7 @@ RSpec.describe TeamsController, :type => :controller do
     end
 
     context 'invalid attributes' do
-    subject {post :create, team: {name: nil, headcoach_id: 1}}
+    subject {post :create, team: {name: nil, headcoach_id: headcoach.id}}
 
       it ' should not save the new team' do
         expect{subject}.to_not change(Team,:count)
@@ -30,7 +30,7 @@ RSpec.describe TeamsController, :type => :controller do
   end
   
   describe 'GET #edit' do
-    let(:team) {Team.create({name:"Otters", headcoach_id: 1})}
+    let(:team) {Team.create({name:"Otters", headcoach_id: headcoach.id})}
     before(:each) { get :edit, id: team.id}
 
     it 'should assign @team' do
@@ -53,6 +53,35 @@ RSpec.describe TeamsController, :type => :controller do
       get 'new'
       expect(assigns(:team)).to be_a_new(Team)
     end
+   end
+
+   describe 'PUT #update' do
+    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+     before(:each) { put :update, id: @team.id}
+
+    it 'should assign @team' do
+      expect(assigns(:team)).to eq(@team)
+    end
+
+   end
+
+   describe 'DELETE destroy' do
+    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    before(:each) { delete :destroy, {:id => @team.id}}
+
+    it 'should assign @team' do
+      expect(assigns(:team)).to eq(@team)
+    end
+
+    it 'delete the contact' do
+      @team = Team.create({name:"Otters", headcoach_id: headcoach.id})
+      expect{delete :destroy, {:id => @team.id}}.to change{Team.count}.by(-1)
+    end
+
+    it 'should render headcoach' do
+      expect(response).to redirect_to("/headcoaches/#{assigns(:team).headcoach_id}")
+    end
+
    end
 
 

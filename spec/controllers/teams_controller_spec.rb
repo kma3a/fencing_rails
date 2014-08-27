@@ -57,7 +57,7 @@ RSpec.describe TeamsController, :type => :controller do
 
    describe 'PUT #update' do
     before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
-     before(:each) { put :update, id: @team.id}
+     before(:each) { put :update, id: @team.id, team: {name:"Otters", headcoach_id: headcoach.id}}
 
     it 'should assign @team' do
       expect(assigns(:team)).to eq(@team)

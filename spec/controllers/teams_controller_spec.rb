@@ -11,6 +11,10 @@ RSpec.describe TeamsController, :type => :controller do
     it 'assigns the requested team' do
       expect(assigns(:team)).to eq(team)
     end
+
+    it 'renders the show template' do
+      expect(response).to render_template(:show)
+    end
   end
   describe 'POST #create' do
     context 'valid attributes' do

@@ -57,6 +57,17 @@ feature 'coach sign up' do
     expect{ click_button "Sign up"}.to change(Coach, :count).by(0)
   end
 
+  scenario 'signs up coach with valid input' do
+    visit('/coaches/sign_up')
+
+    fill_in("Name", with: "Coach Mark")
+    fill_in("Email", with: "mark@gmail.com")
+    fill_in("Password", with: "ameliasteal")
+    fill_in("Password confirmation", with: "ameliasteal")
+    click_button "Sign up"
+
+    expect(current_path).to eq(coach_path(Coach.last))
+  end
 
 
 end

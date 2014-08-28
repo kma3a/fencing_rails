@@ -8,6 +8,7 @@ feature 'headcoach sign up' do
     fill_in("Name", with: "Coach P")
     fill_in("Email", with: "coachp@gmail.com")
     fill_in("Password", with: "chesterknights")
+    fill_in("Password confirmation", with: "chesterknights")
 
     expect{ click_button "Sign up"}.to change(Headcoach, :count).by(1)
 
@@ -19,6 +20,7 @@ feature 'headcoach sign up' do
     fill_in("Name", with: "")
     fill_in("Email", with: "otter@gmail.com")
     fill_in("Password", with: "poop")
+    fill_in("Password confirmation", with: "poop")
 
     expect{click_button "Sign up"}.to change(Headcoach, :count).by(0)
   end
@@ -29,6 +31,7 @@ feature 'headcoach sign up' do
     fill_in("Name", with: "otter")
     fill_in("Email", with: "")
     fill_in("Password", with: "poop")
+    fill_in("Password confirmation", with: "poop")
 
     expect{click_button "Sign up"}.to change(Headcoach, :count).by(0)
   end
@@ -40,11 +43,11 @@ feature 'headcoach sign up' do
     fill_in("Name", with: "Coach P")
     fill_in("Email", with: "coachp@gmail.com")
     fill_in("Password", with: "chesterknights")
+    fill_in("Password confirmation", with: "chesterknights")
 
     click_button('Sign up')
 
     expect(current_path).to eq(headcoach_path(Headcoach.last))
 
   end
-
 end

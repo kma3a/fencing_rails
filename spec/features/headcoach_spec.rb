@@ -33,4 +33,18 @@ feature 'headcoach sign up' do
     expect{click_button "Sign up"}.to change(Headcoach, :count).by(0)
   end
 
+  scenario "a person can sign up as a headcoach" do
+
+    visit('/headcoaches/sign_up')
+
+    fill_in("Name", with: "Coach P")
+    fill_in("Email", with: "coachp@gmail.com")
+    fill_in("Password", with: "chesterknights")
+
+    click_button('Sign up')
+
+    expect(current_path).to eq(headcoach_path(Headcoach.last))
+
+  end
+
 end

@@ -2,8 +2,8 @@ class CreateHeadcoaches < ActiveRecord::Migration
   def change
     create_table :headcoaches do |t|
       t.string :name, null:false
-      t.string :email, null:false, default: ""
-      t.string :encrypted_password, null:false, default: ""
+      t.string :email, null:false
+      t.string :encrypted_password, null:false
       t.timestamps
     end
   end

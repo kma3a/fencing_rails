@@ -36,6 +36,29 @@ feature 'headcoach sign up' do
     expect{click_button "Sign up"}.to change(Headcoach, :count).by(0)
   end
 
+  
+  scenario "does not sign up with no password" do
+    visit('/headcoaches/sign_up')
+    
+    fill_in("Name", with: "otter")
+    fill_in("Email", with: "otterbots@gmail.com")
+    fill_in("Password confirmation", with: "poop")
+
+    expect{click_button "Sign up"}.to change(Headcoach, :count).by(0)
+  end
+
+
+  scenario "does not sign up with no password confirmation" do
+    visit('/headcoaches/sign_up')
+    
+    fill_in("Name", with: "otter")
+    fill_in("Email", with: "otterbots@gmail.com")
+    fill_in("Password", with: "poop")
+
+    expect{click_button "Sign up"}.to change(Headcoach, :count).by(0)
+  end
+
+
   scenario "a person can sign up as a headcoach" do
 
     visit('/headcoaches/sign_up')

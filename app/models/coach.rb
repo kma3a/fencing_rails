@@ -7,6 +7,8 @@ class Coach < ActiveRecord::Base
   has_many :team_coaches
   has_many :teams, through: :team_coaches
 
+  validates_presence_of :name
+
   def sign_in
     default_params.permit(:name, :email)
   end

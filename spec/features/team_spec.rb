@@ -36,4 +36,13 @@ feature "creat new team" do
     expect{ click_button "Submit"}.to change(Team, :count).by(0)
   end
 
+  scenario "will not save if invalid" do
+  
+    visit('/teams/new')
+
+    fill_in('team[name]', with: "")
+    click_button "Submit"
+    expect(current_path).to eq("/teams")
+  end
+
 end

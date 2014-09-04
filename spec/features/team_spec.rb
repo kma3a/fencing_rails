@@ -17,13 +17,23 @@ feature "creat new team" do
 
     expect{ click_button "Submit"}.to change(Team, :count).by(1)
   end
-    scenario "will redirect after creating team" do
+
+  scenario "will redirect after creating team" do
   
     visit('/teams/new')
 
     fill_in('team[name]', with: "Fighting Otters")
     click_button "Submit"
     expect(current_path).to eq(headcoach_path(headcoach.id))
+  end
+
+  scenario "will not save if invalid" do
+  
+    visit('/teams/new')
+
+    fill_in('team[name]', with: "")
+
+    expect{ click_button "Submit"}.to change(Team, :count).by(0)
   end
 
 end

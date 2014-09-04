@@ -6,4 +6,10 @@ feature "welcome page tests" do
     visit("/")
     expect(page).to have_content("Welcome to Fencing!")
   end
+
+  scenario "When click on headcoach link will go to login page" do
+    visit("/")
+    click_link("Head Coach Sign In")
+    expect(current_path).to eq(new_headcoach_session_path)
+  end
 end

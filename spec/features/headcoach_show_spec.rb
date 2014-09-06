@@ -26,4 +26,10 @@ feature "Headcoach show page" do
     expect(current_path).to eq(edit_team_path(team.id))
   end
 
+  scenario "check to see that the delete button works" do
+    visit(headcoach_path(headcoach.id))
+    click_link "Delete"
+    expect(page).to have_no_content("Otters")
+  end
+
 end

@@ -27,6 +27,15 @@ feature "creat new team" do
     expect(current_path).to eq(headcoach_path(headcoach.id))
   end
 
+  scenario "Will have the name of the new team on the page" do
+  
+    visit('/teams/new')
+
+    fill_in('team[name]', with: "Fighting Otters")
+    click_button "Submit"
+    expect(page).to have_content("Fighting Otters")
+  end
+
   scenario "will not save if invalid" do
   
     visit('/teams/new')

@@ -25,6 +25,14 @@ feature "edit team" do
     expect(page).to have_content("Fighting Otters")
   end
 
+
+  scenario "will not redirect if not valid input" do
+    visit(edit_team_path(team.id))
+    fill_in('team[name]', with: "")
+    click_button "Submit"
+    expect(current_path).to eq("/teams/#{team.id}")
+  end
+
 end
 
 

@@ -32,4 +32,9 @@ feature "Headcoach show page" do
     expect(page).to have_no_content("Otters")
   end
 
+  scenario "Check to see that you can click on teamname it will take you to the team show page" do
+    visit(headcoach_path(headcoach.id))
+    click_link "#{team.name}"
+    expect(current_path).to eq(team_path(team.id))
+  end
 end

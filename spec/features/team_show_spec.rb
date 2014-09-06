@@ -21,4 +21,12 @@ feature "team show page" do
     visit(team_path(team.id))
     expect(page).to have_content("Headcoach: matt")
   end
+
+  scenario "back button" do
+    visit(headcoach_path(headcoach.id))
+    click_link("Otters")
+    click_link("Back")
+    expect(current_path).to eq(headcoach_path(headcoach.id))
+  end
+
 end

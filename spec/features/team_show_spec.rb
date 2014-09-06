@@ -10,9 +10,15 @@ feature "team show page" do
 
     before{login_as(headcoach, scope: :headcoach)}
     before{headcoach.teams << team}
+
   scenario "will show the team name" do
     visit(team_path(team.id))
     expect(page).to have_content("Otters")
   end
 
+
+  scenario "will show the headcoach name" do
+    visit(team_path(team.id))
+    expect(page).to have_content("Headcoach: matt")
+  end
 end

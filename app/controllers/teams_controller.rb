@@ -39,7 +39,7 @@ class TeamsController < ApplicationController
   def add_coach
     @team = Team.find(params[:id])
     @coach = Coach.find_by({email: params[:coach][:email]})
-    if  @coach
+    if  @coach && !@team.coaches.include?(@coach)
       @team.coaches << @coach
       redirect_to team_path(@team.id)
     else

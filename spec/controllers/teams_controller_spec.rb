@@ -140,6 +140,19 @@ RSpec.describe TeamsController, :type => :controller do
       end
     end
 
+    context 'trying to add a coach that is already there' do
+      before{@team.coaches << @coach}
+      subject {post :add_coach, coach: {email: "tory@otter.com"}, id: @team.id}
+      it 'should not add to team coaches count' do
+        expect{subject}.to_not change(@team.coaches, :count)
+      end
+
+      it 'should re-render edit' do
+        expect(subject).to render_template("teams/edit")
+      end
+
+    end
+
     context 'invalid attributes' do
       subject {post :add_coach, coach: {email: "y@otter.com"}, id: @team.id}
 
@@ -147,7 +160,7 @@ RSpec.describe TeamsController, :type => :controller do
         expect{subject}.to_not change(@team.coaches,:count)
       end
 
-      it 're-render new' do
+      it 're-render edit' do
         expect(subject).to render_template("teams/edit")
       end
     end

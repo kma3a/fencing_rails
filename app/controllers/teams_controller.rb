@@ -47,5 +47,12 @@ class TeamsController < ApplicationController
     end
   end
 
+  def remove_coach
+    @team = Team.find(params[:id])
+    @coach = Coach.find(params[:coach_id])
+    @team.coaches.delete(@coach)
+    redirect_to team_path(@team.id)
+  end
+
 
 end

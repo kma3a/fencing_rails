@@ -165,6 +165,16 @@ RSpec.describe TeamsController, :type => :controller do
       end
     end
   end
+
+  describe 'GET #remove_coach' do
+    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    before(:each) {@coach = Coach.create({name:"Tory", email: "tory@otter.com", password: "docotter", password_confirmation: "docotter"})}
+    before{@team.coaches << @coach}
+      subject {get :remove_coach, id: @team.id, coach_id: @coach.id}
+    it 'should take the coach off the team coaches list' do
+      expect{subject}.to change(@team.coaches, :count).by(-1)
+    end
+  end
   
  end
 

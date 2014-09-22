@@ -3,7 +3,7 @@
 
 <h3>Coaches:</h3>
 <% @team.coaches.each do |coach| %>
-  <li><%= coach.name %></li>
+  <li><%= coach.name %><%= link_to "Remove", remove_coach_path({coach_id: coach.id}) %></li>
 <%end%>
 
 <%= link_to "Back", url_for(:back) %>

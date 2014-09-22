@@ -16,6 +16,7 @@ RSpec.describe TeamsController, :type => :controller do
       expect(response).to render_template(:show)
     end
   end
+
   describe 'POST #create' do
     context 'valid attributes' do
     subject {post :create, team: {name: 'Fighting Otters', headcoah_id: headcoach.id} }
@@ -124,6 +125,57 @@ RSpec.describe TeamsController, :type => :controller do
    end
 
 
+  describe 'POST #add_coach' do
+    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    before(:each) {@coach = Coach.create({name:"Tory", email: "tory@otter.com", password: "docotter", password_confirmation: "docotter"})}
+
+    context 'valid attributes' do
+      subject {post :add_coach, coach: {email: "tory@otter.com"}, id: @team.id}
+      it "should add to team coach count" do
+        expect{subject}.to change(@team.coaches,:count).by(1)
+      end
+
+      it 'redirects to the new contact' do
+        expect(subject).to redirect_to(team_path(@team.id))
+      end
+    end
+
+    context 'trying to add a coach that is already there' do
+      before{@team.coaches << @coach}
+      subject {post :add_coach, coach: {email: "tory@otter.com"}, id: @team.id}
+      it 'should not add to team coaches count' do
+        expect{subject}.to_not change(@team.coaches, :count)
+      end
+
+      it 'should re-render edit' do
+        expect(subject).to render_template("teams/edit")
+      end
+
+    end
+
+    context 'invalid attributes' do
+      subject {post :add_coach, coach: {email: "y@otter.com"}, id: @team.id}
+
+      it ' should not save the new team' do
+        expect{subject}.to_not change(@team.coaches,:count)
+      end
+
+      it 're-render edit' do
+        expect(subject).to render_template("teams/edit")
+      end
+    end
+  end
+
+  describe 'GET #remove_coach' do
+    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    before(:each) {@coach = Coach.create({name:"Tory", email: "tory@otter.com", password: "docotter", password_confirmation: "docotter"})}
+    before{@team.coaches << @coach}
+      subject {get :remove_coach, id: @team.id, coach_id: @coach.id}
+    it 'should take the coach off the team coaches list' do
+      expect{subject}.to change(@team.coaches, :count).by(-1)
+    end
+  end
+  
  end
 
 

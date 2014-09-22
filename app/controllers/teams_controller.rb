@@ -36,4 +36,23 @@ class TeamsController < ApplicationController
     redirect_to headcoach_path(current_headcoach.id)
   end
 
+  def add_coach
+    @team = Team.find(params[:id])
+    @coach = Coach.find_by({email: params[:coach][:email]})
+    if  @coach && !@team.coaches.include?(@coach)
+      @team.coaches << @coach
+      redirect_to team_path(@team.id)
+    else
+      render 'edit'
+    end
+  end
+
+  def remove_coach
+    @team = Team.find(params[:id])
+    @coach = Coach.find(params[:coach_id])
+    @team.coaches.delete(@coach)
+    redirect_to team_path(@team.id)
+  end
+
+
 end

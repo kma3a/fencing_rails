@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :headcoaches, :only => [:show]
   resources :coaches, :only => [:show]
   resources :teams
+  post '/teams/:id/add_coach' => 'teams#add_coach'
+  get '/teams/:id/remove_coach' => 'teams#remove_coach', as: 'remove_coach'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

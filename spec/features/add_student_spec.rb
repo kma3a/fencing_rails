@@ -8,7 +8,7 @@ feature "Add students" do
     let(:headcoach) {Headcoach.create({name: "matt", email: 'vanillabear@otters.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
     let(:coach) {Coach.create({name: "Tory", email: 'tory@otters.com', password: 'docotter', password_confirmation: 'docotter'})}
     let(:team) {Team.create({name: "Otters", headcoach_id: headcoach.id})}
-    let(:student) {Student.create({name: "Mike Murry"})}
+    let(:student) {Student.create({name: "Percy"})}
 
     before{login_as(headcoach, scope: :headcoach)}
     before{headcoach.teams << team}
@@ -29,14 +29,14 @@ feature "Add students" do
     visit(new_student_path)
     fill_in('student[name]', with: 'Percy')
     click_button("Create Student")
-    expect(current_path).to eq(headcoach_path(headcoach.id))
+    expect(current_path).to eq(student_path(Student.last))
   end
 
   scenario "check that it went to the right page" do
     visit(new_student_path)
     fill_in('student[name]', with: 'Percy')
     click_button("Create Student")
-    expect(page).to have_content("Welcome matt")
+    expect(page).to have_content("Percy's Page")
   end
 
 end

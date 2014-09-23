@@ -7,8 +7,12 @@ class StudentsController < ApplicationController
   def create
     @student = Student.create({name: params[:student][:name]})
     if @student
-      redirect_to headcoach_path(current_headcoach.id)
+      redirect_to student_path(@student)
     end
+  end
+
+  def show
+    @student = Student.find(params[:id])
   end
 
 end

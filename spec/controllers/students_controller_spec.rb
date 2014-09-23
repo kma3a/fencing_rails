@@ -18,6 +18,19 @@ RSpec.describe StudentsController, :type => :controller do
     end
    end
 
+   describe 'Post #create' do
+     context 'valid attributes' do
+      subject { post :create, student: {name: "Student Matt"}}
+       it 'should create a student' do
+         expect{subject}.to change(Student, :count).by(1)
+       end
+
+       it 'redirects to headcoach page' do
+         expect(subject).to redirect_to(headcoach_path(headcoach.id))
+       end
+     end
+   end
+
 
 end
 

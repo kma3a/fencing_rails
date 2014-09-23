@@ -25,4 +25,18 @@ feature "Add students" do
     expect(page).to have_content("Create A New Student")
   end
 
+  scenario "fill in form" do
+    visit(new_student_path)
+    fill_in('student[name]', with: 'Percy')
+    click_button("Create Student")
+    expect(current_path).to eq(headcoach_path(headcoach.id))
+  end
+
+  scenario "check that it went to the right page" do
+    visit(new_student_path)
+    fill_in('student[name]', with: 'Percy')
+    click_button("Create Student")
+    expect(page).to have_content("Welcome matt")
+  end
+
 end

@@ -63,7 +63,13 @@ class TeamsController < ApplicationController
     else
       render 'show'
     end
+  end
 
+  def remove_student
+    @team = Team.find(params[:id])
+    @student = Student.find(params[:student_id])
+    @team.students.delete(@student)
+    redirect_to team_path(@team)
   end
 
 

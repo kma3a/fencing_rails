@@ -10,5 +10,6 @@ describe Student do
   it ' should give a student a secret key' do
     expect(student.secret_key).to_not eq(nil) 
   end
+  it { should validate_uniqueness_of(:secret_key)}
 
 end

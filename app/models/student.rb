@@ -4,6 +4,7 @@ class Student < ActiveRecord::Base
   has_many :teams, through: :team_students
   has_many :participants
   has_many :events, through: :participants
+  validates_uniqueness_of :secret_key
 
   before_create :create_key
 

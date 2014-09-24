@@ -192,10 +192,31 @@ RSpec.describe TeamsController, :type => :controller do
         expect(subject).to redirect_to(team_path(@team))
       end
     end
+
+    context 'Already there' do
+      before{@team.students << @student}
+      subject {post :add_student, student: {secret_key: @student.secret_key}, id: @team.id}
+      it "should not be valid if student is already in the list" do
+        expect{subject}.to_not change(@team.students, :count)
+      end
+      
+      it 'should re-render page' do
+        expect(subject).to render_template("teams/show")
+      end
+    end
+
+    context 'invalid attributes' do
+      subject {post :add_student, student: {secret_key: "1234234"}, id: @team.id}
+      it "should not be valid if there is no student" do
+        expect{subject}.to_not change(@team.students, :count)
+      end
+
+      it "should redirect to the team page" do
+        expect(subject).to render_template("teams/show")
+      end
+    end
   end
 
   
  end
-
-
 

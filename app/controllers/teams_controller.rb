@@ -57,10 +57,13 @@ class TeamsController < ApplicationController
   def add_student
     @team = Team.find(params[:id])
     @student = Student.find_by({secret_key: params[:student][:secret_key]})
-    if @student
+    if @student && !@team.students.include?(@student)
       @team.students << @student
       redirect_to team_path(@team)
+    else
+      render 'show'
     end
+
   end
 
 

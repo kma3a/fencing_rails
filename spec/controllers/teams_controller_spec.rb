@@ -175,8 +175,48 @@ RSpec.describe TeamsController, :type => :controller do
       expect{subject}.to change(@team.coaches, :count).by(-1)
     end
   end
+
+  describe 'Post #add_student' do
+    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    before(:each) {@coach = Coach.create({name:"Tory", email: "tory@otter.com", password: "docotter", password_confirmation: "docotter"})}
+    before(:each) {@student = Student.create({name: "Tony"})}
+    before{@team.coaches << @coach}
+
+    context ' vaild attributes' do
+     subject {post :add_student, student: {secret_key: @student.secret_key}, id: @team.id}
+      it 'should add the student to the team roster' do
+        expect{subject}.to change(@team.students, :count).by(1)
+      end
+      
+      it "should redirect to team page" do
+        expect(subject).to redirect_to(team_path(@team))
+      end
+    end
+
+    context 'Already there' do
+      before{@team.students << @student}
+      subject {post :add_student, student: {secret_key: @student.secret_key}, id: @team.id}
+      it "should not be valid if student is already in the list" do
+        expect{subject}.to_not change(@team.students, :count)
+      end
+      
+      it 'should re-render page' do
+        expect(subject).to render_template("teams/show")
+      end
+    end
+
+    context 'invalid attributes' do
+      subject {post :add_student, student: {secret_key: "1234234"}, id: @team.id}
+      it "should not be valid if there is no student" do
+        expect{subject}.to_not change(@team.students, :count)
+      end
+
+      it "should redirect to the team page" do
+        expect(subject).to render_template("teams/show")
+      end
+    end
+  end
+
   
  end
-
-
 

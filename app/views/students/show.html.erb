@@ -1,1 +1,8 @@
 <h1><%= @student.name%>'s Page</h1>
+<h3>Student Key: <%= @student.secret_key%></h3>
+<p> Please email this to the student for their own record</p>
+
+<h4>Student's teams are: </h4>
+<% @student.teams.each do |team| %>
+  <li><%= team.name %></li>
+<%end%>

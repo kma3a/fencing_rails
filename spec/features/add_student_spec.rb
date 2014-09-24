@@ -29,7 +29,7 @@ feature "Add students" do
     visit(new_student_path)
     fill_in('student[name]', with: 'Percy')
     click_button("Create Student")
-    expect(current_path).to eq(student_path(Student.last))
+    expect(current_path).to eq(student_path(Student.last.secret_key))
   end
 
   scenario "check that it went to the right page" do

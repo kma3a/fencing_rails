@@ -29,6 +29,17 @@ RSpec.describe StudentsController, :type => :controller do
          expect(subject).to redirect_to(student_path(Student.last.secret_key))
        end
      end
+
+     context 'invalid attributes' do
+       subject {post :create, student: {name: nil}}
+       it 'should not create a student' do
+        expect{subject}.to_not change(Student, :count)
+       end
+
+       it 'should redirect to new page' do
+         expect(subject).to render_template("students/new")
+       end
+     end
    end
 
    describe 'GET #show' do

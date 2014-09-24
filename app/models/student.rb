@@ -4,11 +4,11 @@ class Student < ActiveRecord::Base
   has_many :teams, through: :team_students
   has_many :participants
   has_many :events, through: :participants
-  validates_uniqueness_of :secret_key
 
-  before_create :create_key
+  before_validation :create_key
 
   def create_key
     self.secret_key = SecureRandom.base64(9).sub(/[\/\\]/, "1")
+    p self.secret_key
   end
 end

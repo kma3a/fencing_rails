@@ -26,14 +26,14 @@ RSpec.describe StudentsController, :type => :controller do
        end
 
        it 'redirects to headcoach page' do
-         expect(subject).to redirect_to(student_path(Student.last))
+         expect(subject).to redirect_to(student_path(Student.last.secret_key))
        end
      end
    end
 
    describe 'GET #show' do
      let(:student) {Student.create({name: 'Student Matt'})}
-     before(:each) {get :show, id: student.id}
+     before(:each) {get :show, id: student.secret_key}
      it 'assigns the requested student' do
        expect(assigns(:student)).to eq(student)
      end

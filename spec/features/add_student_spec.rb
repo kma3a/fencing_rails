@@ -39,4 +39,11 @@ feature "Add students" do
     expect(page).to have_content("Percy's Page")
   end
 
+  scenario "add student to team on team show page" do
+    visit(team_path(team))
+    fill_in('student[secret_key]', with: student.secret_key)
+    click_button("Add Student")
+    expect(page). to have_content(student.name)
+  end
+
 end

@@ -9,6 +9,5 @@ class Student < ActiveRecord::Base
 
   def create_key
     self.secret_key = SecureRandom.base64(9).sub(/[\/\\]/, "1")
-    p self.secret_key
   end
 end

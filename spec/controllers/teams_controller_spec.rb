@@ -175,6 +175,21 @@ RSpec.describe TeamsController, :type => :controller do
       expect{subject}.to change(@team.coaches, :count).by(-1)
     end
   end
+
+  describe 'Post #add_student' do
+    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    before(:each) {@coach = Coach.create({name:"Tory", email: "tory@otter.com", password: "docotter", password_confirmation: "docotter"})}
+    before(:each) {@student = Student.create({name: "Tony"})}
+    before{@team.coaches << @coach}
+
+    context ' vaild attributes' do
+     subject {post :add_student, student: {secret_key: @student.secret_key}, id: @team.id}
+     it 'should add the student to the team roster' do
+        expect{subject}.to change(@team.students, :count).by(1)
+      end
+    end
+  end
+
   
  end
 

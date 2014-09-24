@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/teams/:id/add_coach' => 'teams#add_coach'
   get '/teams/:id/remove_coach' => 'teams#remove_coach', as: 'remove_coach'
   resources :students
+  post '/teams/:id/add_student' => 'teams#add_student'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -184,8 +184,12 @@ RSpec.describe TeamsController, :type => :controller do
 
     context ' vaild attributes' do
      subject {post :add_student, student: {secret_key: @student.secret_key}, id: @team.id}
-     it 'should add the student to the team roster' do
+      it 'should add the student to the team roster' do
         expect{subject}.to change(@team.students, :count).by(1)
+      end
+      
+      it "should redirect to team page" do
+        expect(subject).to redirect_to(team_path(@team))
       end
     end
   end

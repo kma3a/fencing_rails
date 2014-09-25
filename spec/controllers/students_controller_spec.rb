@@ -86,7 +86,18 @@ RSpec.describe StudentsController, :type => :controller do
       end
     end
 
-       
+    context "invalid attributes" do
+      it "will not change it for invalid attributes" do
+        put :update, id: student.secret_key, student: {name: ''}
+        expect(student.name).to eq("Student Matt")
+      end
+      
+      it "re-renders the edit page" do
+        put :update, id: student.secret_key, student: {name: ''}
+        expect(response).to render_template(:edit)
+      end
+    end
+        
   end 
 
 end

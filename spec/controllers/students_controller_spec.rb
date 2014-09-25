@@ -64,9 +64,30 @@ RSpec.describe StudentsController, :type => :controller do
     it 'renders the edit view' do
       expect(response).to render_template(:edit)
     end
-
   end
-    
+
+  describe 'PUT #update' do
+    let(:student) {Student.create({name: 'Student Matt'})}
+    context "valid attributes" do
+      it 'should assign @team' do
+        put :update, id: student.secret_key, student: {name: 'Matty'}
+        expect(assigns(:student)).to eq(student)
+      end
+
+      it 'changes student attributes' do
+        put :update, id: student.secret_key, student: {name: 'Matty'}
+        student.reload
+        expect(student.name).to eq("Matty")
+      end
+
+      it 're-renders the team page' do
+        put :update, id: student.secret_key, student: {name: 'Matty'}
+        expect(response).to redirect_to(headcoach_path(headcoach))
+      end
+    end
+
+       
+  end 
 
 end
 

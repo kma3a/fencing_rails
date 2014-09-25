@@ -4,7 +4,6 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 feature "team show page" do
-  context "with headcoach" do    
     let(:headcoach) {Headcoach.create({name: "matt", email: 'vanillabear@otters.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
     let(:team) {Team.create({name: "Otters", headcoach_id: headcoach.id})}
 
@@ -22,6 +21,5 @@ feature "team show page" do
     expect(page).to have_content("Headcoach: matt")
   end
 
-  end
-
 end
+

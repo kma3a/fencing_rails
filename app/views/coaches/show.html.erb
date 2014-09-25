@@ -4,7 +4,7 @@
   <h4> Your Teams </h4>
   <ul>
    <% @coach.teams.each do |team| %>
-      <li><%= team.name %></li>
+      <li><%=link_to  team.name, team_path(team) %></li>
    <%end%>
   </ul>
 </div>

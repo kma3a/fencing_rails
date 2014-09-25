@@ -22,9 +22,9 @@ class StudentsController < ApplicationController
   end
 
   def update
-    @student = Student.find_by(secret_key: params[:id])
+    @student = Student.find(params[:id])
     if @student.update({name:params[:student][:name]})
-      redirect_to headcoach_path(current_headcoach)
+      redirect_to student_path(@student.secret_key)
     else
       render :edit
     end

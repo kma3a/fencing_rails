@@ -23,5 +23,20 @@ feature "edit student" do
       visit(edit_student_path(student.secret_key))
       expect(page).to have_content(student.secret_key)
     end
+
+    scenario "When filled in correctly goes to student's page" do
+      visit(edit_student_path(student.secret_key))
+      fill_in('student[name]', with: "Kenny")
+      click_button "Create Student"
+      expect(current_path).to eq(student_path(student.secret_key))
+    end
+
+    scenario "will show student's new name" do
+      visit(edit_student_path(student.secret_key))
+      fill_in('student[name]', with: "Kenny")
+      click_button "Create Student"
+      expect(page).to have_content("Kenny")
+    end
+      
 end
 

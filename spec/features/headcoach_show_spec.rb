@@ -37,4 +37,16 @@ feature "Headcoach show page" do
     click_link "#{team.name}"
     expect(current_path).to eq(team_path(team.id))
   end
+
+  scenario "click profile to go back to the show page" do
+    visit(team_path(team))
+    click_link("Profile")
+    expect(current_path).to eq(headcoach_path(headcoach))
+  end
+
+  scenario "click edit your profile to go to the edit profile page" do
+    visit(headcoach_path(headcoach))
+    click_link("Edit Your Profile")
+    expect(current_path).to eq(edit_headcoach_registration_path(headcoach))
+  end
 end

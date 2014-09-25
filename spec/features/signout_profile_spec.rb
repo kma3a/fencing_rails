@@ -34,4 +34,19 @@ feature "headcoach signout and profile link tests" do
     expect(page).to have_content("Profile")
   end
 
+  scenario "when clicked signout will sign out the headcoach" do
+    login_as(headcoach, scope: :headcoach)
+    visit(headcoach_path(headcoach))
+    click_link("Sign Out")
+    expect(current_path).to eq("/")
+  end
+
+  scenario "profile when clicked takes you back to the headcoach's profile" do
+    login_as(headcoach, scope: :headcoach)
+    visit(student_path(student.secret_key))
+    click_link("Profile")
+    expect(current_path).to eq(headcoach_path(headcoach))
+  end
+
+
 end

@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_filter :authenticate_headcoach!, only: [:edit, :new]
 
   def show
     @team = Team.find(params[:id])

@@ -14,6 +14,7 @@
 <% if headcoach_signed_in? %>
   <%= link_to "Sign Out", destroy_headcoach_session_path, :method => :delete %>
   <%= link_to "Edit Profile", edit_headcoach_registration_path(current_headcoach.id)%>
+  <%= link_to "Profile", headcoach_path(current_headcoach.id)%>
 <% end %>
 <%= yield %>
 

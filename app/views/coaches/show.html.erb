@@ -8,3 +8,7 @@
    <%end%>
   </ul>
 </div>
+
+<% if current_coach.id == @coach.id %>
+  <%= link_to "Edit", edit_coach_registration_path(current_coach.id)%>
+<%end%>

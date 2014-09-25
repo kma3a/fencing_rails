@@ -27,4 +27,16 @@ feature "coach show page" do
     expect(current_path).to eq(team_path(team))
   end
 
+  scenario "if you are on another page can click profile and get the show page" do
+    visit(team_path(team))
+    click_link("Profile")
+    expect(current_path).to eq(coach_path(coach))
+  end
+
+  scenario "click edit to get to the edit profile" do
+    visit(coach_path(coach))
+    click_link("Edit")
+    expect(current_path).to eq(edit_coach_registration_path(coach))
+  end
+
 end

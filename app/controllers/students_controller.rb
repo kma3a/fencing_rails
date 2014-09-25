@@ -17,4 +17,8 @@ class StudentsController < ApplicationController
     @student = Student.find_by(secret_key: params[:id])
   end
 
+  def edit
+    @student = Student.find_by(secret_key: params[:id])
+  end
+
 end

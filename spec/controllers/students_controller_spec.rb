@@ -54,5 +54,19 @@ RSpec.describe StudentsController, :type => :controller do
      end
    end
 
+   describe 'GET #edit' do
+    let(:student) {Student.create({name: 'Student Matt'})}
+    before(:each) {get :edit, id: student.secret_key}
+    it 'assigns @student' do
+      expect(assigns(:student)).to eq(student)
+    end
+
+    it 'renders the edit view' do
+      expect(response).to render_template(:edit)
+    end
+
+  end
+    
+
 end
 

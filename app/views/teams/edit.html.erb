@@ -1,9 +1,5 @@
 <h1> Edit <%= @team.name%></h1>
 <div>
   <%= render 'team_form' %>
-  <%= form_tag(controller: "teams", action: "add_coach", method: "get") do %>
-    <%= email_field(:coach, :email) %>
-    <%= submit_tag("Add Coach") %>
-  <% end %>
   <%= link_to "Back", headcoach_path(current_headcoach.id) %>
 </div>

@@ -14,14 +14,14 @@ feature "Add Coaches to Team page" do
   
   scenario "can get to the add coaches page" do
     
-    visit(edit_team_path(team.id))
+    visit(team_path(team.id))
     fill_in('coach[email]', with: coach.email)
     click_button "Add Coach"
     expect(page).to_not have_content("Edit Otters")
   end
 
   scenario "will have coaches on the show page for teams" do
-    visit(edit_team_path(team.id))
+    visit(team_path(team.id))
     fill_in('coach[email]', with: coach.email)
     click_button "Add Coach"
     expect(page).to have_content("Tory")
@@ -29,7 +29,7 @@ feature "Add Coaches to Team page" do
 
 
   scenario "will redirect if not a coach" do
-    visit(edit_team_path(team.id))
+    visit(team_path(team.id))
     fill_in('coach[email]', with: "poopy@otter.com")
     click_button "Add Coach"
     expect(page).to have_content("Edit Otters")

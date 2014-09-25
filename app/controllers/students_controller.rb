@@ -17,4 +17,17 @@ class StudentsController < ApplicationController
     @student = Student.find_by(secret_key: params[:id])
   end
 
+  def edit
+    @student = Student.find_by(secret_key: params[:id])
+  end
+
+  def update
+    @student = Student.find(params[:id])
+    if @student.update({name:params[:student][:name]})
+      redirect_to student_path(@student.secret_key)
+    else
+      render :edit
+    end
+  end
+
 end

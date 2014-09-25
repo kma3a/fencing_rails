@@ -14,7 +14,7 @@
 
 <h3>Students:</h3>
 <% @team.students.each do |student| %>
-  <li><%= student.name %><%= link_to "Remove Student", remove_student_path({student_id: student.id})%>  </li>
+  <li><%= student.name %>  <%= link_to "Remove Student", remove_student_path({student_id: student.id})%>  <%= link_to "Edit Student", edit_student_path(student.secret_key) %> </li>
 <%end%>
 
 <%= form_tag(controller: "teams", action: "add_student", method: "post") do %>

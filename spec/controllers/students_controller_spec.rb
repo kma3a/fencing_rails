@@ -54,5 +54,51 @@ RSpec.describe StudentsController, :type => :controller do
      end
    end
 
+   describe 'GET #edit' do
+    let(:student) {Student.create({name: 'Student Matt'})}
+    before(:each) {get :edit, id: student.secret_key}
+    it 'assigns @student' do
+      expect(assigns(:student)).to eq(student)
+    end
+
+    it 'renders the edit view' do
+      expect(response).to render_template(:edit)
+    end
+  end
+
+  describe 'PUT #update' do
+    let(:student) {Student.create({name: 'Student Matt'})}
+    context "valid attributes" do
+      it 'should assign @team' do
+        put :update, id: student.id, student: {name: 'Matty'}
+        expect(assigns(:student)).to eq(student)
+      end
+
+      it 'changes student attributes' do
+        put :update, id: student.id, student: {name: 'Matty'}
+        student.reload
+        expect(student.name).to eq("Matty")
+      end
+
+      it 're-renders the team page' do
+        put :update, id: student.id, student: {name: 'Matty'}
+        expect(response).to redirect_to(student_path(student.secret_key))
+      end
+    end
+
+    context "invalid attributes" do
+      it "will not change it for invalid attributes" do
+        put :update, id: student.id, student: {name: ''}
+        expect(student.name).to eq("Student Matt")
+      end
+      
+      it "re-renders the edit page" do
+        put :update, id: student.id, student: {name: ''}
+        expect(response).to render_template(:edit)
+      end
+    end
+        
+  end 
+
 end
 

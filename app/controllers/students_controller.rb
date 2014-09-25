@@ -25,6 +25,8 @@ class StudentsController < ApplicationController
     @student = Student.find_by(secret_key: params[:id])
     if @student.update({name:params[:student][:name]})
       redirect_to headcoach_path(current_headcoach)
+    else
+      render :edit
     end
   end
 

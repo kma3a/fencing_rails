@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  before_filter :authenticate_headcoach!, only: [:new, :edit]
 
   def new
     @student = Student.new()

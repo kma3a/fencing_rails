@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20140808212915) do
 
   create_table "events", force: true do |t|
     t.integer  "team_id"
+    t.integer  "participant_count"
+    t.string   "event_title"
     t.string   "secret_key"
     t.datetime "created_at"
     t.datetime "updated_at"

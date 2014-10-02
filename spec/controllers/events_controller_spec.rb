@@ -18,4 +18,17 @@ RSpec.describe EventsController, :type => :controller do
     end
   end
 
+  describe "POST #create" do
+    context "valid attributes" do
+      subject {post :create, event: {event_title: "10/02/14", team_id: team, participant_count: 4}}
+      it "should create a team" do
+        expect{subject}.to change(Team, :count).by(1)
+      end
+
+      it "redirects to the event show page" do
+        expect(subject).to redirect_to(event_path(Event.last))
+      end
+    end  
+  end
+
 end

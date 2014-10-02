@@ -30,4 +30,12 @@ feature "Create events" do
       click_link("Create Event")
       expect(page).to have_content("Create Event")
     end
+
+    scenario "fill in form" do
+      visit(new_event_path)
+      fill_in('event[event_title]', with: "10/02/14")
+      select("4", from: "event[participant_count]")
+      click_button("Create Event")
+      expect(current_path).to eq(event_path(Event.last))
+    end
 end

@@ -26,6 +26,6 @@
 <%end%>
 
 <% if headcoach_signed_in? || coach_signed_in? %>
-  <%= link_to "Create Event", new_event_path %>
+  <%= link_to "Create Event", new_team_event_path(@team,@event) %>
 <% end %>
 

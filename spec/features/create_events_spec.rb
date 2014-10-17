@@ -34,7 +34,10 @@ feature "Create events" do
     scenario "fill in form" do
       visit(new_team_event_path(team))
       fill_in('event[event_title]', with: "10/02/14")
-      select("4", from: "event[participant_count]")
+      page.all(:fillable_field, 'event[participants][]')[0].set(student1.secret_key)
+      page.all(:fillable_field, 'event[participants][]')[1].set(student2.secret_key)
+      page.all(:fillable_field, 'event[participants][]')[2].set(student3.secret_key)
+      page.all(:fillable_field, 'event[participants][]')[3].set(student4.secret_key)
       click_button("Create Event")
       expect(current_path).to eq(team_event_path(team, Event.last))
     end

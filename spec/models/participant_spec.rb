@@ -3,4 +3,13 @@ require 'rails_helper'
 describe Participant do
   it { should belong_to(:event)}
   it { should belong_to(:student)}
+  let(:headcoach) {Headcoach.create({name: "Mark", email: "marrt@lsejrle.com", password: "beavers", password_confirmation: "beavers"})}
+  let(:team) {Team.create({name:"Otters", headcoach_id: headcoach.id})}
+  let(:event) {Event.create({event_title: "10/14/14", team_id: team.id, participant_count: 5})}
+  let(:student) {Student.create({name: "Joe"})}
+  let(:participant) {Participant.create({event_id: event.id, student_id: student.id, bout_number: 1})}
+  it ' should fill in bout_results' do
+    expect(participant.bout_results).to_not eq(nil)
+    expect(participant.bout_results).to eq({2=> nil, 3=> nil, 4=> nil, 5=> nil}) 
+  end
 end

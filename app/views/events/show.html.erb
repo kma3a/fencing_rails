@@ -11,17 +11,24 @@
     <th> Ind </th>
     <th> Pl </th>
   </thead>
-  <% @event.participants.each do |part| %>
+  <% @participants.each do |part| %>
   <tr>
     <td> <%= part.student.name %></td>
     <td> <%= part.bout_number %> </td>
-     <% (1..@event.participant_count).each_with_index do |x| %>
-      <td><%=x %></td>
+     <% (1..@event.participant_count).each do |x| %>
+      <%if part.bout_number == x %>
+        <td>X</td>
+      <% elsif part.bout_results[x] == nil %>
+        <td> </td>
+      <% else %>
+        <td><%= part.bout_results[x] %></td>
+      <%end%>
     <%end%>
     <td> <%= part.victories %></td>
     <td> <%= part.touches_scored %></td>
     <td> <%= part.touches_recieved %></td>
     <td> <%= part.indicator %></td>
+    <td> <%= part.place %></td>
   </tr>
   <%end%>
 </table>

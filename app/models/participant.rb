@@ -3,7 +3,7 @@ class Participant < ActiveRecord::Base
   belongs_to :student
   serialize :bout_results, Hash
 
-  before_save :add_results
+  before_create :add_results
 
   def add_results
     (1..self.event.participant_count).each do |num|

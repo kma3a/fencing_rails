@@ -13,4 +13,9 @@ class Participant < ActiveRecord::Base
     end
   end
 
+  def change_results(bout, result)
+    self.bout_results[bout] = result
+    self.save
+  end
+
 end

@@ -18,7 +18,7 @@
      <% (1..@event.participant_count).each do |x| %>
       <%if part.bout_number == x %>
         <td>X</td>
-      <% elsif part.bout_results[x] == nil %>
+      <% elsif part.bout_results[x] == 0%>
         <td> </td>
       <% else %>
         <td><%= part.bout_results[x] %></td>

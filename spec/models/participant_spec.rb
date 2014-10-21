@@ -11,10 +11,14 @@ describe Participant do
   let(:participant2) {Participant.create({event_id: event.id, student_id: student.id, bout_number: 2})}
   it ' should fill in bout_results' do
     expect(participant.bout_results).to_not eq(nil)
-    expect(participant.bout_results).to eq({2=> nil, 3=> nil, 4=> nil, 5=> nil}) 
+    expect(participant.bout_results).to eq({2=> 0, 3=> 0, 4=> 0, 5=> 0}) 
   end
   it 'should update the bout_results' do
     participant.change_results(2,"V5")
-    expect(participant.bout_results).to eq({2=> "V5", 3=> nil, 4=>nil, 5=>nil})
+    expect(participant.bout_results).to eq({2=> "V5", 3=> 0, 4=> 0, 5=>0})
+  end
+  it 'should have method to get the victories' do
+    participant.change_results(2,"V5")
+    expect(participant.victories).to eq(1)
   end
 end

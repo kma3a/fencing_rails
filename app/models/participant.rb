@@ -4,7 +4,7 @@ class Participant < ActiveRecord::Base
   serialize :bout_results, Hash
 
   before_create :add_results
-  before_save :update_victories, :update_touches_scored
+  before_save :update_victories, :update_touches_scored, :calc_indicator
 
   def add_results
     (1..self.event.participant_count).each do |num|
@@ -51,4 +51,9 @@ class Participant < ActiveRecord::Base
     self.touches_recieved = touch
     self.save
   end
+
+  def calc_indicator
+    self.indicator = (self.touches_scored - self.touches_recieved)
+  end
+
 end

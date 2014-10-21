@@ -37,4 +37,11 @@ describe Participant do
     participant2.update_tr
     expect(participant2.touches_recieved).to eq(5)
   end
+  it ' should calculate the indicator' do
+    participant.change_results(2,"V5")
+    participant2.change_results(1,"D3")
+    participant.update_tr
+    participant.calc_indicator
+    expect(participant.indicator).to eq(2)
+  end
 end

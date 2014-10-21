@@ -14,6 +14,10 @@ class Participant < ActiveRecord::Base
     end
   end
 
+  def update_bout(bout, result)
+    change_results(bout, result)
+    Participant.find_by({event: self.event.id, bout_number: bout}).update_tr
+  end
   def change_results(bout, result)
     self.bout_results[bout] = result
     self.save
@@ -37,4 +41,14 @@ class Participant < ActiveRecord::Base
     self.touches_scored = touch
   end
 
+  def update_tr
+    touch = 0
+    self.event.participants.each do |part|
+      if part.bout_number != self.bout_number
+        touch += part.bout_results[self.bout_number][1].to_i
+      end
+    end
+    self.touches_recieved = touch
+    self.save
+  end
 end

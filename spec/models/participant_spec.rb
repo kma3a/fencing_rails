@@ -44,4 +44,16 @@ describe Participant do
     participant.calc_indicator
     expect(participant.indicator).to eq(2)
   end
+  it 'should create the place' do
+    participant.change_results(2,"V5")
+    participant2.change_results(1,"D3")
+    participant.update_tr
+    participant2.update_tr
+    participant.calc_indicator
+    participant2.calc_indicator
+    participant2.get_place
+    participant.get_place
+    expect(participant.place).to eq(1)
+    expect(participant2.place).to eq(2)
+  end
 end

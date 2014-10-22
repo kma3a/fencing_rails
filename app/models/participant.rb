@@ -59,9 +59,10 @@ class Participant < ActiveRecord::Base
 
   def get_place
     array = self.event.participants.order(victories: :desc, indicator: :desc, touches_scored: :desc )
-    place = array.index(self) + 1
-    self.place = place
-    self.save
+    array.each_with_index do |part, index|
+      part.place = index + 1
+      part.save
+    end
   end
 
 end

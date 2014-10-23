@@ -18,6 +18,11 @@ class StudentsController < ApplicationController
     @student = Student.find_by(secret_key: params[:id])
   end
 
+  def publicshow
+    @student = Student.find_by(secret_key: params[:student][:secret_key])
+    render 'show'
+  end
+
   def edit
     @student = Student.find_by(secret_key: params[:id])
   end

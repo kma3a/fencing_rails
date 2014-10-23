@@ -23,7 +23,7 @@ class EventsController < ApplicationController
   end
   
   def publicshow
-    @event = Event.find_by(secret_key: params[:secret_key])
+    @event = Event.find_by(secret_key: params[:event][:secret_key])
     @participants = @event.participants.order("bout_number ASC")
     render 'show'
   end

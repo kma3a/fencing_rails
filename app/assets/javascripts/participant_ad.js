@@ -1,5 +1,5 @@
 
-  var participantNode = "<li><input type='text' name='event[participants][]' placeholder='student key'><button class='remove-button'>X</button></li>"
+  var participantNode = "<li><input type='text' name='event[participants][]' placeholder='student key' required='true'><button class='remove-button'>X</button></li>"
 
 $(document).ready(function(){
   

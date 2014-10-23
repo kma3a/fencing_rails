@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :authenticate!, except: [:publicshow]
+  before_filter :authenticate!, except: [:publicshow, :show]
 
   def new
     @event = Event.new()

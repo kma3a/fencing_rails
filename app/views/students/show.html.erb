@@ -6,3 +6,8 @@
 <% @student.teams.each do |team| %>
   <li><%= team.name %></li>
 <%end%>
+
+<h3> Events Participated in:</h3>
+<% @student.events.each do |event| %>
+  <li><%= link_to event.event_title, team_event_path(event.team_id, event) %></li>
+<%end%>

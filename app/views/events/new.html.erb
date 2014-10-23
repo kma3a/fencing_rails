@@ -4,10 +4,28 @@
   <%= f.label :event_title %></br>
   <%= f.text_field :event_title%> </br>
   <ol>
-    <li><input type='text' name='event[participants][]'></li>
-    <li><input type='text' name='event[participants][]'></li>
-    <li><input type='text' name='event[participants][]'></li>
-    <li><input type='text' name='event[participants][]'></li>
+    <li><input type='text' name='event[participants][]' placeholder="student key" required='true'></li>
+    <li><input type='text' name='event[participants][]' placeholder="student key" required='true'></li>
+    <li><input type='text' name='event[participants][]' placeholder="student key" required='true'></li>
+    <li><input type='text' name='event[participants][]' placeholder="student key" required='true'></li>
   </ol>
-  <%= f.submit "Create Event"%>
+  <button class='add-participant'>Add Participant</button></br></br>
+  <%= f.submit "Create Event", :class => 'button'%>
 <%end%>
+
+
+<div class="team-students">
+<h3>Team <%=@team.name%>'s students</h3>
+<table>
+  <thead>
+    <td>Name</td>
+    <td>Key</td>
+  </thead>
+  <% @team.students.each do |student| %>
+  <tr>
+    <td><%= student.name%></td>
+    <td><%= student.secret_key%></td>
+  </tr>
+  <%end%>
+</table>
+</div>

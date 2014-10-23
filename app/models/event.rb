@@ -6,6 +6,8 @@ class Event < ActiveRecord::Base
   has_many :participants
   has_many :students, through: :participants
 
+  validates :event_title, presence: true
+
   before_validation :create_key
 
   def create_key

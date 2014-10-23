@@ -14,6 +14,8 @@ class EventsController < ApplicationController
          Participant.create(student_id: part.id, event_id: @event.id, bout_number: index + 1)
       end
       redirect_to team_event_path(@team, @event.id)
+    else
+      render 'new'
     end
   end
 

@@ -4,11 +4,11 @@
   <%= f.label :event_title %></br>
   <%= f.text_field :event_title%> </br>
   <ol>
-    <li><input type='text' name='event[participants][]'></li>
-    <li><input type='text' name='event[participants][]'></li>
-    <li><input type='text' name='event[participants][]'></li>
-    <li><input type='text' name='event[participants][]'></li>
+    <li><input type='text' name='event[participants][]' placeholder="student key"></li>
+    <li><input type='text' name='event[participants][]' placeholder="student key"></li>
+    <li><input type='text' name='event[participants][]' placeholder="student key"></li>
+    <li><input type='text' name='event[participants][]' placeholder="student key"></li>
   </ol>
-  <button class='button add_participant'>Add Participant</button></br>
-  <%= f.submit "Create Event"%>
+  <button class='add-participant'>Add Participant</button></br></br>
+  <%= f.submit "Create Event", :class => 'button'%>
 <%end%>

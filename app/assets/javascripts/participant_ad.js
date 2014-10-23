@@ -1,19 +1,28 @@
 
-  var participantNode = "<li><input type='text' name='event[participants][]'><button class='remove-button'>X</button></li>"
+  var participantNode = "<li><input type='text' name='event[participants][]' placeholder='student key'><button class='remove-button'>X</button></li>"
 
 $(document).ready(function(){
   
-
-$('#new_event').on('click','.add_participant', function(event){
+var count = 0;
+$('#new_event').on('click', '.add-participant' , function(event){
   event.preventDefault();
-  $($(this).siblings(' ol')).append(participantNode);
+  count ++;
+  $($(this).siblings('ol')).append(participantNode);
+  checkCount(count)
 });
 
 $('#new_event').on('click','.remove-button', function(event){
   event.preventDefault();
+  count --;
   $(this).parent().remove();
+  checkCount(count)
 });
-
-
+function checkCount(count) {
+  if (count > 3) {
+    $('.add-participant').hide();
+  }else {
+    $('.add-participant').show();
+  }
+}
 
 });

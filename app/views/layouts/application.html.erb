@@ -15,6 +15,7 @@
   <%= link_to "Sign Out", destroy_headcoach_session_path, :method => :delete %>
   <%= link_to "Profile", headcoach_path(current_headcoach.id)%>
 <% end %>
+<%= link_to "Home", root_path%> 
 <%= yield %>
 
 </body>

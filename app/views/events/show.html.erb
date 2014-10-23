@@ -1,3 +1,6 @@
+<h1><%= @event.event_title %></h1>
+<p>The secret key to have other people view the event is: <%= @event.secret_key%></p>
+
 <table>
   <thead>
     <th> Name</th>
@@ -33,6 +36,8 @@
   <%end%>
 </table>
 
-<% @event.get_pool.each do |part| %>
-  <%=link_to "#{part[0]} vs #{part[1]}", bout_path(@event,part[0],part[1]) %>
-<%end %>
+<% if headcoach_signed_in? || coach_signed_in? %>
+  <% @event.get_pool.each do |part| %>
+    <%=link_to "#{part[0]} vs #{part[1]}", bout_path(@event,part[0],part[1]) %>
+  <%end %>
+<%end%>

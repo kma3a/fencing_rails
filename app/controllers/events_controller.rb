@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :authenticate!, except: [:show]
+  before_filter :authenticate!, except: [:publicshow]
 
   def new
     @event = Event.new()
@@ -22,6 +22,12 @@ class EventsController < ApplicationController
     @participants = @event.participants.order("bout_number ASC")
   end
   
+  def publicshow
+    @event = Event.find_by(secret_key: params[:secret_key])
+    @participants = @event.participants.order("bout_number ASC")
+    render 'show'
+  end
+
   def bout
     @event = Event.find(params[:id])
     @part1 = Participant.find_by(event_id: params[:id], bout_number: params[:part1])

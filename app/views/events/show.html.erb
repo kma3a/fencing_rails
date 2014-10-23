@@ -34,5 +34,5 @@
 </table>
 
 <% @event.get_pool.each do |part| %>
-  <%= part %>
+  <%=link_to "#{part[0]} vs #{part[1]}", bout_path(@event,part[0],part[1]) %>
 <%end %>

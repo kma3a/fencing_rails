@@ -1,3 +1,13 @@
 <h1>Welcome to Fencing!</h1>
 <%= link_to "Head Coach Sign In", new_headcoach_session_path %>
 <%= link_to "Coach Sign In", new_coach_session_path  %>
+
+<%= form_for(@event, url: event_public_path, html: {method: 'get'}) do |f| %>
+  <%= f.text_field(:secret_key)%>
+  <%= submit_tag("View Event")%>
+<%end%>
+
+<%= form_for(@student, url: student_public_path, html: {method: 'get'}) do |f| %>
+  <%= f.text_field(:secret_key)%>
+  <%= submit_tag("View Student")%>
+<%end%>

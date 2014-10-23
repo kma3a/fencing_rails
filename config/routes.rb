@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :students
   post '/teams/:id/add_student' => 'teams#add_student'
   get '/teams/:id/remove_student' => 'teams#remove_student', as: 'remove_student'
+  get '/events/:id/bout/:part1/vs/:part2' => 'events#bout', as: 'bout'
+  put '/events/:id/bout/:part1/vs/:part2' => 'events#bout_update', as: 'bout_update'
+  get '/events' => 'events#publicshow', as: 'event_public'
+  get '/student' => 'students#publicshow', as: 'student_public'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

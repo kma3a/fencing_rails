@@ -17,6 +17,7 @@ class Participant < ActiveRecord::Base
   def update_bout(bout, result)
     change_results(bout, result)
     Participant.find_by({event: self.event.id, bout_number: bout}).update_tr
+    get_place
   end
   def change_results(bout, result)
     self.bout_results[bout] = result
@@ -54,6 +55,14 @@ class Participant < ActiveRecord::Base
 
   def calc_indicator
     self.indicator = (self.touches_scored - self.touches_recieved)
+  end
+
+  def get_place
+    array = self.event.participants.order(victories: :desc, indicator: :desc, touches_scored: :desc )
+    array.each_with_index do |part, index|
+      part.place = index + 1
+      part.save
+    end
   end
 
 end

@@ -54,7 +54,21 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
     @team = Team.find(params[:team_id])
+  end
 
+  def update
+    @team = Team.find(params[:team_id])
+    @event = Event.find(params[:id])
+    @event.update({event_title: params[:event][:event_title]})
+    if @event.save
+      @event.add_participants(params[:event]["participants"]).each_with_index do |part,index|
+         participant = Participant.find_by(event_id: @event.id, bout_number: index + 1)
+         participant.update(student_id: part.id)
+      end
+      redirect_to team_event_path(@team, @event.id)
+    else
+      render 'edit'
+    end
   end
 
 end

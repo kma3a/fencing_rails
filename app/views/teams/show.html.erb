@@ -31,6 +31,6 @@
 
 <h3>Events: </h3>
   <% @team.events.each do |event| %>
-    <li><%= link_to event.event_title, team_event_path(@team, event)%></li>
+    <li><%= link_to event.event_title, team_event_path(@team, event)%> <%= link_to "Edit Event", edit_team_event_path(@team, event)%></li>
   <%end%>
 

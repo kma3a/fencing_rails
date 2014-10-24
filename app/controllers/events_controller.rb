@@ -50,5 +50,11 @@ class EventsController < ApplicationController
     end
     redirect_to team_event_path(@event.team_id, @event.id)
   end
+  
+  def edit
+    @event = Event.find(params[:id])
+    @team = Team.find(params[:team_id])
+
+  end
 
 end

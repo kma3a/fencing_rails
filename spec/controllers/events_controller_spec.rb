@@ -36,4 +36,19 @@ RSpec.describe EventsController, :type => :controller do
     end  
   end
 
+  describe 'GET #edit' do
+    let(:event) {Event.create({event_title: "test pool", team_id: team.id, participant_count: 4})}
+    let(:particiapant1) {Participant.create({student_id: studnet1.id, event_id: event.idi, bout_number: 1})}
+    let(:particiapant2) {Participant.create({student_id: studnet2.id, event_id: event.idi, bout_number: 2})}
+    let(:particiapant3) {Participant.create({student_id: studnet3.id, event_id: event.idi, bout_number: 3})}
+    let(:particiapant4) {Participant.create({student_id: studnet4.id, event_id: event.idi, bout_number: 4})}
+
+    it 'should assign the requested event' do
+      get :edit, id: event.id, team_id: team.id
+      expect(assigns(:event)).to eq(event)
+    end
+
+     
+  end
+
 end

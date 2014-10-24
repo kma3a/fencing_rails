@@ -5,7 +5,7 @@ Warden.test_mode!
 
 
 feature "with coach" do
-    let(:headcoach) {Headcoach.create({name: "matt", email: 'vanillabear@otters.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
+    let(:headcoach) {Coach.create({name: "matt", email: 'vanillabear@otters.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
     let(:team) {Team.create({name: "Otters", headcoach_id: headcoach.id})}
     let(:coach) {Coach.create({name: "Tory", email: "docotter@tory.com", password: "docotter", password_confirmation: "docotter"})}
 

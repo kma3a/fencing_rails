@@ -6,6 +6,7 @@ class Coach < ActiveRecord::Base
 
   has_many :team_coaches
   has_many :teams, through: :team_coaches
+  has_many :owned_teams, class_name: "Team", foreign_key: 'headcoach_id'
 
   validates_presence_of :name
 

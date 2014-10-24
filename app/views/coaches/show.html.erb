@@ -7,8 +7,17 @@
       <li><%=link_to  team.name, team_path(team) %></li>
    <%end%>
   </ul>
+
+  <h4> Teams You Own</h4>
+    <ul>
+      <% @coach.owned_teams.each do |team|%>
+      <li><%=link_to team.name, team_path(team) %></li>
+      <%end%>
+    </ul>
 </div>
 
 <% if current_coach.id == @coach.id %>
   <%= link_to "Edit", edit_coach_registration_path(current_coach.id)%>
 <%end%>
+<%= link_to "Create_Team", new_team_path %>
+<%= link_to "Add Student", new_student_path %>

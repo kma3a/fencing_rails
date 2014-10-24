@@ -4,7 +4,7 @@ describe Event do
   it { should belong_to(:team)}
   it { should have_many(:participants)}
   it { should have_many(:students).through(:participants)}
-  let(:headcoach) {Headcoach.create({name: "Mark", email: "marrt@lsejrle.com", password: "beavers", password_confirmation: "beavers"})}
+  let(:headcoach) {Coach.create({name: "Mark", email: "marrt@lsejrle.com", password: "beavers", password_confirmation: "beavers"})}
   let(:team) {Team.create({name:"Otters", headcoach_id: headcoach.id})}
   let(:event) {Event.create({event_title: "10/14/14", team_id: team.id, participant_count: 5})}
   it 'should give a event a secret key' do

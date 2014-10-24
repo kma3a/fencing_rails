@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :authenticate!, except: [:publicshow, :show]
+  before_filter :authenticate_coach!, except: [:publicshow, :show]
 
   def new
     @event = Event.new()
@@ -50,16 +50,5 @@ class EventsController < ApplicationController
     end
     redirect_to team_event_path(@event.team_id, @event.id)
   end
-
-  private
-
-  def authenticate!
-    if headcoach_signed_in?
-    
-    else
-      authenticate_coach!
-    end
-  end
-
 
 end

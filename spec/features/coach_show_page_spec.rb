@@ -4,12 +4,12 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 feature "coach show page" do
-  let(:headcoach) {Headcoach.create({name:"Joe", email: "JoeJ@gmail.com", password: "Jokye", password_confirmation: "Jokye"})}
+  let(:headcoach) {Coach.create({name: "matt", email: 'vanillabear@otters.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
   let(:coach) {Coach.create({name: "Mark", email: "Mark@amelia.com", password: "Markymark", password_confirmation: "Markymark"})}
   let(:team) {Team.new({name: "Amelia", headcoach_id: headcoach.id})}
   
-  before{login_as(coach, scope: :coach)}
   before{coach.teams << team}
+  before{login_as(coach, scope: :coach)}
 
   scenario "coach should display the teams" do
     visit(coach_path(coach))

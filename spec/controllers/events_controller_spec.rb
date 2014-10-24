@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe EventsController, :type => :controller do
-  let(:headcoach) {Headcoach.create({name: 'matt', email: 'vanillabear@google.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
-  let(:team) {Team.create({name: "Otters"})}
+  let(:coach) {Coach.create({name: 'matt', email: 'vanillabear@google.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
+  let(:team) {Team.create({name: "Otters", headcoach_id: coach.id})}
     let(:student1) {Student.new({name: "Kelly"})}
     let(:student2) {Student.new({name: "Sara"})}
     let(:student3) {Student.new({name: "Zack"})}
     let(:student4) {Student.new({name: "Ben"})}
 
 
-  before {sign_in headcoach}
+  before {sign_in coach}
 
   describe "GET #new" do
     it " locate the @event" do

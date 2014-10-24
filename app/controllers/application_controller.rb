@@ -5,9 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def after_sign_in_path_for(resource)
-    if headcoach_signed_in?
-      headcoach_path(current_headcoach.id)
-    elsif coach_signed_in?
+    if coach_signed_in?
       coach_path(current_coach.id)
     else
       root_path

@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe StudentsController, :type => :controller do
-  let(:headcoach) {Headcoach.create({name: 'matt', email: 'vanillabear@google.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
+  let(:coach) {Coach.create({name: 'matt', email: 'vanillabear@google.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
   
-  before {sign_in headcoach}
+  before {sign_in coach}
 
   describe 'GET #new' do
     let(:student) {Student.create({name: 'Student Matt'})}
@@ -25,7 +25,7 @@ RSpec.describe StudentsController, :type => :controller do
          expect{subject}.to change(Student, :count).by(1)
        end
 
-       it 'redirects to headcoach page' do
+       it 'redirects to coach page' do
          expect(subject).to redirect_to(student_path(Student.last.secret_key))
        end
      end

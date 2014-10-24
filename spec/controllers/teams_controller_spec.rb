@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe TeamsController, :type => :controller do
-  let(:headcoach) {Headcoach.create({name: 'matt', email: 'vanillabear@google.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
+  let(:coach) {Coach.create({name: 'matt', email: 'vanillabear@google.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
 
-  before {sign_in headcoach}
+  before {sign_in coach}
 
   describe 'GET #show' do
-     let(:team) {Team.create({name:"Otters", headcoach_id: headcoach.id})}
+     let(:team) {Team.create({name:"Otters", headcoach_id: coach.id})}
     before(:each) { get :show, id: team.id}
     it 'assigns the requested team' do
       expect(assigns(:team)).to eq(team)
@@ -19,18 +19,18 @@ RSpec.describe TeamsController, :type => :controller do
 
   describe 'POST #create' do
     context 'valid attributes' do
-    subject {post :create, team: {name: 'Fighting Otters', headcoah_id: headcoach.id} }
+    subject {post :create, team: {name: 'Fighting Otters', headcoach_id: coach.id} }
       it "should create a team" do
         expect{subject}.to change(Team,:count).by(1)
       end
 
       it 'redirects to the new contact' do
-        expect(subject).to redirect_to("/headcoaches/#{assigns(:team).headcoach_id}")
+        expect(subject).to redirect_to("/coaches/#{assigns(:team).headcoach_id}")
       end
     end
 
     context 'invalid attributes' do
-    subject {post :create, team: {name: nil, headcoach_id: headcoach.id}}
+    subject {post :create, team: {name: nil, headcoach_id: coach.id}}
 
       it ' should not save the new team' do
         expect{subject}.to_not change(Team,:count)
@@ -43,7 +43,7 @@ RSpec.describe TeamsController, :type => :controller do
   end
   
   describe 'GET #edit' do
-    let(:team) {Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    let(:team) {Team.create({name:"Otters", headcoach_id: coach.id})}
     before(:each) { get :edit, id: team.id}
 
     it 'should assign @team' do
@@ -69,36 +69,36 @@ RSpec.describe TeamsController, :type => :controller do
    end
 
    describe 'PUT #update' do
-     before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+     before(:each) {@team = Team.create({name:"Otters", headcoach_id: coach.id})}
      context 'valid attributes' do
   
        it 'should assign @team' do
-         put :update, id: @team.id, team: {name:"Otters", headcoach_id: headcoach.id}
+         put :update, id: @team.id, team: {name:"Otters", headcoach_id: coach.id}
          expect(assigns(:team)).to eq(@team)
        end
 
        it "changes @team's attributes" do
-        put :update, id: @team.id, team: {name:"Fighting Otters", headcoach_id: headcoach.id}
+        put :update, id: @team.id, team: {name:"Fighting Otters", headcoach_id: coach.id}
         @team.reload
         expect(@team.name).to eq("Fighting Otters")
        end
 
        it 'redirects to the headcoach page' do
-        put :update, id: @team.id, team: {name:"Fighting Otters", headcoach_id: headcoach.id}
-        expect(response).to redirect_to("/headcoaches/#{assigns(:team).headcoach_id}")
+        put :update, id: @team.id, team: {name:"Fighting Otters", headcoach_id: coach.id}
+        expect(response).to redirect_to("/coaches/#{assigns(:team).headcoach_id}")
        end
      end
 
      context 'invalid attributes' do
 
       it 'does not change @team attributes' do
-        put :update, id: @team, team: {name: "", headcoach_id: headcoach.id}
+        put :update, id: @team, team: {name: "", headcoach_id: coach.id}
         @team.reload
         expect(@team.name).to eq("Otters")
       end
 
       it 're-renders the edit method' do
-        put :update, id: @team, team: {name: "", headcoach_id: headcoach.id}
+        put :update, id: @team, team: {name: "", headcoach_id: coach.id}
         expect(response).to render_template(:edit)
       end
     end
@@ -106,7 +106,7 @@ RSpec.describe TeamsController, :type => :controller do
    end
 
    describe 'DELETE destroy' do
-    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    before(:each) {@team = Team.create({name:"Otters", headcoach_id: coach.id})}
     before(:each) { delete :destroy, {:id => @team.id}}
 
     it 'should assign @team' do
@@ -114,19 +114,19 @@ RSpec.describe TeamsController, :type => :controller do
     end
 
     it 'delete the contact' do
-      @team = Team.create({name:"Otters", headcoach_id: headcoach.id})
+      @team = Team.create({name:"Otters", headcoach_id: coach.id})
       expect{delete :destroy, {:id => @team.id}}.to change{Team.count}.by(-1)
     end
 
-    it 'should render headcoach' do
-      expect(response).to redirect_to("/headcoaches/#{assigns(:team).headcoach_id}")
+    it 'should render coach' do
+      expect(response).to redirect_to("/coaches/#{assigns(:team).headcoach_id}")
     end
 
    end
 
 
   describe 'POST #add_coach' do
-    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    before(:each) {@team = Team.create({name:"Otters", headcoach_id: coach.id})}
     before(:each) {@coach = Coach.create({name:"Tory", email: "tory@otter.com", password: "docotter", password_confirmation: "docotter"})}
 
     context 'valid attributes' do
@@ -167,7 +167,7 @@ RSpec.describe TeamsController, :type => :controller do
   end
 
   describe 'GET #remove_coach' do
-    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    before(:each) {@team = Team.create({name:"Otters", headcoach_id: coach.id})}
     before(:each) {@coach = Coach.create({name:"Tory", email: "tory@otter.com", password: "docotter", password_confirmation: "docotter"})}
     before{@team.coaches << @coach}
       subject {get :remove_coach, id: @team.id, coach_id: @coach.id}
@@ -177,7 +177,7 @@ RSpec.describe TeamsController, :type => :controller do
   end
 
   describe 'Post #add_student' do
-    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    before(:each) {@team = Team.create({name:"Otters", headcoach_id: coach.id})}
     before(:each) {@coach = Coach.create({name:"Tory", email: "tory@otter.com", password: "docotter", password_confirmation: "docotter"})}
     before(:each) {@student = Student.create({name: "Tony"})}
     before{@team.coaches << @coach}
@@ -219,7 +219,7 @@ RSpec.describe TeamsController, :type => :controller do
 
   
   describe 'GET #remove_student' do
-    before(:each) {@team = Team.create({name:"Otters", headcoach_id: headcoach.id})}
+    before(:each) {@team = Team.create({name:"Otters", headcoach_id: coach.id})}
     before(:each) {@coach = Coach.create({name:"Tory", email: "tory@otter.com", password: "docotter", password_confirmation: "docotter"})}
     before(:each) {@student = Student.create({name: "Tony"})}
     before{@team.coaches << @coach}

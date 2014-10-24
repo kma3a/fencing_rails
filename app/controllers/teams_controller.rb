@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_filter :authenticate_headcoach!, only: [:edit, :new]
+  before_filter :authenticate_coach!
 
   def show
     @team = Team.find(params[:id])
@@ -10,9 +10,9 @@ class TeamsController < ApplicationController
   end
   
   def create
-    @team = Team.new(name: params[:team][:name], headcoach_id: current_headcoach.id)
+    @team = Team.new(name: params[:team][:name], headcoach_id: current_coach.id)
     if @team.save
-      redirect_to headcoach_path(current_headcoach.id)
+      redirect_to coach_path(current_coach.id)
     else
       render 'new'
     end
@@ -25,7 +25,7 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     if @team.update({name:params[:team][:name]})
-      redirect_to headcoach_path(current_headcoach.id)
+      redirect_to coach_path(current_coach.id)
     else
       render 'edit'
     end
@@ -34,7 +34,7 @@ class TeamsController < ApplicationController
   def destroy
     @team = Team.find(params[:id])
     @team.destroy
-    redirect_to headcoach_path(current_headcoach.id)
+    redirect_to coach_path(current_coach.id)
   end
 
   def add_coach

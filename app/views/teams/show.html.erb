@@ -3,9 +3,9 @@
 
 <h3>Coaches:</h3>
 <% @team.coaches.each do |coach| %>
-  <li><%= coach.name %> <% if headcoach_signed_in? &&  current_headcoach.id == @team.headcoach_id %> <%= link_to "Remove", remove_coach_path({coach_id: coach.id}) %> <%end%></li>
+  <li><%= coach.name %> <% if current_coach.id == @team.headcoach_id %> <%= link_to "Remove", remove_coach_path({coach_id: coach.id}) %> <%end%></li>
 <%end%>
-<% if  headcoach_signed_in? && current_headcoach.id == @team.headcoach_id%>
+<% if  current_coach.id == @team.headcoach_id%>
   <%= form_tag(controller: "teams", action: "add_coach", method: "get") do %>
     <%= label_tag(:coach_email, "Enter coach's email") %>
     <%= email_field(:coach, :email) %>
@@ -15,9 +15,9 @@
 
 <h3>Students:</h3>
 <% @team.students.each do |student| %>
-  <li><%=link_to student.name, student_path(student.secret_key) %> <% if headcoach_signed_in? && current_headcoach.id == @team.headcoach_id %>  <%= link_to "Remove Student", remove_student_path({student_id: student.id})%>  <%= link_to "Edit Student", edit_student_path(student.secret_key) %> <%end%></li>
+  <li><%=link_to student.name, student_path(student.secret_key) %> <% if current_coach.id == @team.headcoach_id %>  <%= link_to "Remove Student", remove_student_path({student_id: student.id})%>  <%= link_to "Edit Student", edit_student_path(student.secret_key) %> <%end%></li>
 <%end%>
-<% if headcoach_signed_in? && current_headcoach.id == @team.headcoach_id %>
+<% if current_coach.id == @team.headcoach_id %>
   <%= form_tag(controller: "teams", action: "add_student", method: "post") do %>
     <%= label_tag(:student_secret_key, "Enter Student Key" ) %>
     <%= text_field(:student, :secret_key) %>
@@ -25,7 +25,7 @@
   <% end %>
 <%end%>
 
-<% if headcoach_signed_in? || coach_signed_in? %>
+<% if coach_signed_in? %>
   <%= link_to "Create Event", new_team_event_path(@team,@event) %>
 <% end %>
 

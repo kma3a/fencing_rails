@@ -5,11 +5,11 @@ Warden.test_mode!
 
 feature "student show page" do
 
-  let(:headcoach) {Headcoach.create({name:"matt", email: 'vanillabear@otter.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
+  let(:headcoach) {Coach.create({name:"matt", email: 'vanillabear@otter.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
   let(:student) {Student.create({name: "poo"})}
   let(:team) {Team.create({name: "pooy otters", headcoach_id: headcoach.id})}
 
-  before{login_as(headcoach, scope: :headcoach)}
+  before{login_as(headcoach, scope: :coach)}
   before{team.students << student}
 
   scenario "will show the name of the student" do

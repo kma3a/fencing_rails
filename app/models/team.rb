@@ -1,5 +1,5 @@
 class Team < ActiveRecord::Base
-  belongs_to :headcoach
+  belongs_to :headcoach, class_name: "Coach"
   has_many :team_coaches
   has_many :coaches, through: :team_coaches
   has_many :team_students

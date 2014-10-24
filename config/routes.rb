@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   devise_for :coaches
-  devise_for :headcoaches
 
-  resources :headcoaches, :only => [:show]
   resources :coaches, :only => [:show]
   resources :teams do
     resources :events

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Participant do
   it { should belong_to(:event)}
   it { should belong_to(:student)}
-  let(:headcoach) {Headcoach.create({name: "Mark", email: "marrt@lsejrle.com", password: "beavers", password_confirmation: "beavers"})}
+  let(:headcoach) {Coach.create({name: "Mark", email: "marrt@lsejrle.com", password: "beavers", password_confirmation: "beavers"})}
   let(:team) {Team.create({name:"Otters", headcoach_id: headcoach.id})}
   let(:event) {Event.create({event_title: "10/14/14", team_id: team.id, participant_count: 5})}
   let(:student) {Student.create({name: "Joe"})}

@@ -5,11 +5,11 @@ Warden.test_mode!
 
 feature "edit student" do
     
-    let(:headcoach) {Headcoach.create({name: "matt", email: 'vanillabear@otters.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
+    let(:headcoach) {Coach.create({name: "matt", email: 'vanillabear@otters.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
     let(:team) {Team.create({name: "Otters", headcoach_id: headcoach.id})}
     let(:student) {Student.create({name: "Ken"})}
 
-    before{login_as(headcoach, scope: :headcoach)}
+    before{login_as(headcoach, scope: :coach)}
     before{ headcoach.teams << team}
     before{team.students << student}
 

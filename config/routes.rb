@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :coaches
+  devise_for :coaches, :controllers => { :registrations => :registrations }
 
   resources :coaches, :only => [:show]
   resources :teams do

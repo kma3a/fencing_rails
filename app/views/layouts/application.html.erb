@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fencing</title>
+  <title>Fencing Coach</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -10,6 +10,8 @@
 <% if coach_signed_in? %>
   <%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %>
   <%= link_to "Profile", coach_path(current_coach.id)%>
+<% else %>
+  <%= link_to "Coach Sign In", new_coach_session_path  %>
 <% end %>
 <%= link_to "Home", root_path%> 
 <%= yield %>

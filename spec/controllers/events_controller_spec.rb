@@ -85,6 +85,11 @@ RSpec.describe EventsController, :type => :controller do
       expect(response).to redirect_to(team_event_path(team, event))
     end
 
+   it 'does not redirect if invalid arguemts' do
+      put :update, id: event.id, team_id: team.id, event: {event_title: "", participants: [studentnew.secret_key, student2.secret_key, student3.secret_key, student4.secret_key]}
+      expect(response).to render_template(:edit)
+    end
+
 
   end
 

@@ -80,6 +80,12 @@ RSpec.describe EventsController, :type => :controller do
       expect(event.participants.first.student).to eq(studentnew)
     end
 
+   it 'redirects to the show page' do
+      put :update, id: event.id, team_id: team.id, event: {event_title: "Test Pool", participants: [studentnew.secret_key, student2.secret_key, student3.secret_key, student4.secret_key]}
+      expect(response).to redirect_to(team_event_path(team, event))
+    end
+
+
   end
 
 end

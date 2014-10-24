@@ -23,7 +23,6 @@ class Event < ActiveRecord::Base
       end
     end
     participants
-
   end
   
   def get_pool

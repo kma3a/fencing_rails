@@ -9,6 +9,16 @@ class Event < ActiveRecord::Base
   validates :event_title, presence: true
 
   before_validation :create_key
+  
+  def get_participants(array)
+    add_participants(array)
+  end
+
+  def get_pool
+    pool
+  end
+
+  private
 
   def create_key
     self.secret_key ||= SecureRandom.base64(9).gsub(/[^a-zA-z\d]/, Random.rand(9).to_s)
@@ -25,7 +35,7 @@ class Event < ActiveRecord::Base
     participants
   end
   
-  def get_pool
+  def pool
     case self.participant_count
       when 4
         return [[1,4],[2,3],[1,3],[2,4],[3,4],[1,2]]

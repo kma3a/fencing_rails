@@ -31,7 +31,22 @@ feature "event show page" do
     it 'shows the students' do
       visit(team_event_path(team, event))
       expect(page).to have_content(student1.name)
+      expect(page).to have_content(student2.name)
+      expect(page).to have_content(student3.name)
+      expect(page).to have_content(student4.name)
     end
+
+    it 'shows the bouts and can click on them' do
+      visit(team_event_path(team, event))
+      expect(page).to have_content("1 vs 4")
+    end
+
+    it 'should be clickable' do
+      visit(team_event_path(team, event))
+      click_link("1 vs 4")
+      expect(current_path).to eq(bout_path(event, participant1.bout_number, participant4.bout_number))
+    end
+
 
 
 end

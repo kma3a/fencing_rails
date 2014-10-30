@@ -6,6 +6,23 @@ class Participant < ActiveRecord::Base
   before_create :add_results
   before_save :update_victories, :update_touches_scored, :calc_indicator
 
+  def update_bout(bout, result)
+    edit_bout(bout, result)
+  end
+  
+  def update_tr
+    touch = 0
+    self.event.participants.each do |part|
+      if part.bout_number != self.bout_number
+        touch += part.bout_results[self.bout_number][1].to_i
+      end
+    end
+    self.touches_recieved = touch
+    self.save
+  end
+
+  private
+
   def add_results
     (1..self.event.participant_count).each do |num|
       if num != self.bout_number
@@ -14,11 +31,12 @@ class Participant < ActiveRecord::Base
     end
   end
 
-  def update_bout(bout, result)
+  def edit_bout(bout, result)
     change_results(bout, result)
     Participant.find_by({event: self.event.id, bout_number: bout}).update_tr
     get_place
   end
+
   def change_results(bout, result)
     self.bout_results[bout] = result
     self.save
@@ -42,17 +60,7 @@ class Participant < ActiveRecord::Base
     self.touches_scored = touch
   end
 
-  def update_tr
-    touch = 0
-    self.event.participants.each do |part|
-      if part.bout_number != self.bout_number
-        touch += part.bout_results[self.bout_number][1].to_i
-      end
-    end
-    self.touches_recieved = touch
-    self.save
-  end
-
+  
   def calc_indicator
     self.indicator = (self.touches_scored - self.touches_recieved)
   end

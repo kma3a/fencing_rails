@@ -11,14 +11,7 @@ class Participant < ActiveRecord::Base
   end
   
   def update_tr
-    touch = 0
-    self.event.participants.each do |part|
-      if part.bout_number != self.bout_number
-        touch += part.bout_results[self.bout_number][1].to_i
-      end
-    end
-    self.touches_recieved = touch
-    self.save
+    edit_tr
   end
 
   private
@@ -72,5 +65,17 @@ class Participant < ActiveRecord::Base
       part.save
     end
   end
+
+  def edit_tr
+    touch = 0
+    self.event.participants.each do |part|
+      if part.bout_number != self.bout_number
+        touch += part.bout_results[self.bout_number][1].to_i
+      end
+    end
+    self.touches_recieved = touch
+    self.save
+  end
+
 
 end

@@ -9,8 +9,14 @@ feature "welcome page tests" do
 
   scenario "When click on coach link will go to login page" do
     visit("/")
-    click_link("Coach Sign In")
+    click_link("Sign In")
     expect(current_path).to eq(new_coach_session_path)
+  end
+
+  scenario "When click on coach link will go to login page" do
+    visit("/")
+    click_link("Sign Up")
+    expect(current_path).to eq(new_coach_registration_path)
   end
 
 end

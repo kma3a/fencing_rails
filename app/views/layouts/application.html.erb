@@ -13,7 +13,8 @@
     <%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %>
     <%= link_to "Profile", coach_path(current_coach.id)%>
   <% else %>
-    <%= link_to "Coach Sign In", new_coach_session_path  %>
+    <%= link_to "Sign In", new_coach_session_path  %>
+    <%= link_to "Sign Up", new_coach_registration_path  %>
   <% end %>
   </div>
   <div class="logo">

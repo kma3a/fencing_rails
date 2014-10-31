@@ -8,6 +8,8 @@ class Student < ActiveRecord::Base
   before_validation :create_key
   validates_presence_of :name, :secret_key
 
+  private
+  
   def create_key
     self.secret_key ||= SecureRandom.base64(9).gsub(/[^a-zA-z\d]/, Random.rand(9).to_s)
   end

@@ -9,6 +9,7 @@ class Coach < ActiveRecord::Base
   has_many :owned_teams, class_name: "Team", foreign_key: 'headcoach_id'
 
   validates_presence_of :name
+  private
 
   def sign_in
     default_params.permit(:name, :email)

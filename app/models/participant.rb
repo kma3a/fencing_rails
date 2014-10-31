@@ -18,9 +18,7 @@ class Participant < ActiveRecord::Base
 
   def add_results
     (1..self.event.participant_count).each do |num|
-      if num != self.bout_number
-        self.bout_results[num] = 0
-      end
+      self.bout_results[num] = 0 if num != self.bout_number
     end
   end
 
@@ -38,9 +36,7 @@ class Participant < ActiveRecord::Base
   def update_victories
     victories = 0
     self.bout_results.each_value do |value|
-      if value != 0 && value.start_with?("V")
-        victories += 1
-      end
+      victories += 1 if value != 0 && value.start_with?("V")
     end
     self.victories = victories
   end
@@ -69,9 +65,7 @@ class Participant < ActiveRecord::Base
   def edit_tr
     touch = 0
     self.event.participants.each do |part|
-      if part.bout_number != self.bout_number
-        touch += part.bout_results[self.bout_number][1].to_i
-      end
+      touch += part.bout_results[self.bout_number][1].to_i if part.bout_number != self.bout_number
     end
     self.touches_recieved = touch
     self.save

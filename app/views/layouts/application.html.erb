@@ -7,13 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if coach_signed_in? %>
-  <%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %>
-  <%= link_to "Profile", coach_path(current_coach.id)%>
-<% else %>
-  <%= link_to "Coach Sign In", new_coach_session_path  %>
-<% end %>
-<%= link_to "Home", root_path%> 
+<div class="header">
+  <div class="sign-in">
+  <% if coach_signed_in? %>
+    <%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %>
+    <%= link_to "Profile", coach_path(current_coach.id)%>
+  <% else %>
+    <%= link_to "Coach Sign In", new_coach_session_path  %>
+  <% end %>
+  </div>
+  <div class="logo">
+    <h1>Fencing Coach</h1>
+  </div>
+  <div class="nav">
+    <%= link_to "Home", root_path %> 
+  </div>
+</div>
 <%= yield %>
 
 </body>

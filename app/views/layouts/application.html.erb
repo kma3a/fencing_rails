@@ -7,19 +7,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="navbar">
-  <div class="sign-in">
-  <% if coach_signed_in? %>
-    <%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %>
-    <%= link_to "Profile", coach_path(current_coach.id)%>
-  <% else %>
-    <%= link_to "Sign In", new_coach_session_path  %>
-    <%= link_to "Sign Up", new_coach_registration_path  %>
-  <% end %>
+<nav class="navbar">
+  <div class="container">
+    <div class="sign-in navbar-right">
+    <% if coach_signed_in? %>
+      <%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %> | 
+      <%= link_to "Profile", coach_path(current_coach.id)%> | 
+      <%= link_to "Edit Profile", edit_coach_registration_path(current_coach.id)%>
+    <% else %>
+      <%= link_to "Sign In", new_coach_session_path  %> |
+      <%= link_to "Sign Up", new_coach_registration_path  %>
+    <% end %>
+    </div>
+   <div class="navbar-header">
+    <%= link_to "Fencing Coach", root_path, {:class => "navbar-brand"} %>
+   </div>
   </div>
-  <%= link_to "Fencing Coach", root_path, {:class => "navbar-brand"} %>
+</nav>
+<div class="container">
+  <%= yield %>
 </div>
-<%= yield %>
-
 </body>
 </html>

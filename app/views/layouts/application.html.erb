@@ -9,18 +9,19 @@
 <body>
 <nav class="navbar">
   <div class="container">
-    <div class="sign-in navbar-right">
+    <ul class="nav nav-pills pull-right">
     <% if coach_signed_in? %>
-      <%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %> | 
-      <%= link_to "Profile", coach_path(current_coach.id)%> | 
-      <%= link_to "Edit Profile", edit_coach_registration_path(current_coach.id)%>
+      
+      <li><%= link_to "Profile", coach_path(current_coach.id)%></li> 
+      <li><%= link_to "Edit Profile", edit_coach_registration_path(current_coach.id)%></li>
+      <li><%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %></li>
     <% else %>
-      <%= link_to "Sign In", new_coach_session_path  %> |
-      <%= link_to "Sign Up", new_coach_registration_path  %>
+      <li><%= link_to "Sign In", new_coach_session_path  %></li>
+      <li><%= link_to "Sign Up", new_coach_registration_path  %></li>
     <% end %>
     </div>
-   <div class="navbar-header">
-    <%= link_to "Fencing Coach", root_path, {:class => "navbar-brand"} %>
+   <div class="center">
+    <%= link_to "Fencing Coach", root_path, {:class => "text-muted h2"} %>
    </div>
   </div>
 </nav>

@@ -1,22 +1,21 @@
-<h1> Welcome <%= @coach.name %>!</h1>
+<div class="center">
+  <h1 class="intro"> Welcome <%= @coach.name %>!</h1>
 
-<div>
-  <h4> Your Teams </h4>
-  <ul>
-   <% @coach.teams.each do |team| %>
-      <li><%=link_to  team.name, team_path(team) %></li>
-   <%end%>
-  </ul>
-
-  <h4> Teams You Own</h4>
-    <ul>
-      <% @coach.owned_teams.each do |team|%>
-      <li><%=link_to team.name, team_path(team) %></li>
-      <%end%>
-    </ul>
+  <div class="col-md-6">
+    <h4> Your Teams </h4>
+   <ul>
+     <% @coach.teams.each do |team| %>
+        <li><%=link_to  team.name, team_path(team) %></li>
+     <%end%>
+   </ul>
+  </div>
+  <div class="col-md-6">
+    <h4> Teams You Own</h4>
+      <ul>
+        <% @coach.owned_teams.each do |team|%>
+          <li><%=link_to team.name, team_path(team) %></li>
+        <%end%>
+      </ul>
+  </div>
 </div>
 
-<% if current_coach.id == @coach.id %>
-<%end%>
-<%= link_to "Create_Team", new_team_path %>
-<%= link_to "Add Student", new_student_path %>

@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="header">
+<div class="navbar">
   <div class="sign-in">
   <% if coach_signed_in? %>
     <%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %>
@@ -17,12 +17,7 @@
     <%= link_to "Sign Up", new_coach_registration_path  %>
   <% end %>
   </div>
-  <div class="logo">
-    <h1>Fencing Coach</h1>
-  </div>
-  <div class="nav">
-    <%= link_to "Home", root_path %> 
-  </div>
+  <%= link_to "Fencing Coach", root_path, {:class => "navbar-brand"} %>
 </div>
 <%= yield %>
 

@@ -1,17 +1,29 @@
 <%= form_tag("/events/#{@event.id}/bout/#{@part1.bout_number}/vs/#{@part2.bout_number}", method: "put") do %>
-<table>
-<td>
-<%= @part1.student.name%></br>
-<%= number_field(:participant1, :bout_points, in: 0..5, default: 0)%></br>
-<%= label_tag(:victory)%>
-<%= radio_button_tag(:victory, "1")%>
-</td>
-<td>
-<%= @part2.student.name%></br>
-<%= number_field(:participant2, :bout_points, in: 0..5)%> </br>
-<%= label_tag(:victory)%>
-<%= radio_button_tag(:vicotry, "2")%>
-</td>
+<table class="table">
+ <thead>
+    <th>
+      <h4><%= @part1.student.name%></h4></br>
+    </th>
+    <th>
+      <h4>VS.</h4>
+    </th>
+    <th>
+      <h4><%= @part2.student.name%></h4></br>
+    </th>
+ </thead>
+  <td>
+    <%= label_tag(:bout_points,"Touches")%>
+    <%= number_field(:participant1, :bout_points, value: 0,in: 0..5)%></br>
+    <%= label_tag(:vicotry, "Victory")%>
+    <%= radio_button_tag(:victory, "1", required: true)%>
+  </td><td>
+  </td>
+  <td>
+    <%= label_tag(:bout_points,"Touches")%>
+    <%= number_field(:participant2, :bout_points, value: 0, in: 0..5)%> </br>
+    <%= label_tag(:vicotry, "Victory")%>
+    <%= radio_button_tag(:victory, "2", required: true)%>
+  </td>
 </table>
-<%= submit_tag("Submit")%>
+<%= submit_tag("Submit", class:"btn btn-default btn-center")%>
 <%end%>

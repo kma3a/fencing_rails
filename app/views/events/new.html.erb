@@ -1,23 +1,23 @@
-<h1>Create Event</h1>
-<p>Events can have minimum of 4 participants and maximum of 8</p>
-<div
+<h3>Create Event For Team <%= @team.name%></h3>
+<p>Events must have minimum of 4 participants and maximum of 8</p>
+<div class="sign-template">
 <%= form_for [@team,@event] do |f| %>
-  <%= f.label :event_title %></br>
-  <%= f.text_field :event_title%> </br>
+  <%= f.text_field :event_title, placeholder:"Event Title", class:"form-control"%> </br>
+  <%= f.label :participants %></br>
   <ol>
     <li><input type='text' name='event[participants][]' placeholder="student key" required='true'></li>
     <li><input type='text' name='event[participants][]' placeholder="student key" required='true'></li>
     <li><input type='text' name='event[participants][]' placeholder="student key" required='true'></li>
     <li><input type='text' name='event[participants][]' placeholder="student key" required='true'></li>
   </ol>
-  <button class='add-participant' type='button'>Add Participant</button></br></br>
-  <%= f.submit "Create Event", :class => 'button'%>
+  <button class='add-participant btn btn-sm btn-default' type='button'>Add Participant</button></br></br>
+  <%= f.submit "Create Event", :class => 'btn btn-default'%>
 <%end%>
 </div>
 
-<div class="team-students">
-<h3>Team <%=@team.name%>'s students</h3>
-<table>
+<div class="coach">
+<h3>Team's Students</h3>
+<table class="table table-bordered">
   <thead>
     <td>Name</td>
     <td>Key</td>

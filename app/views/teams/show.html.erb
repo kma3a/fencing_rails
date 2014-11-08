@@ -40,7 +40,7 @@
   <% end %>
   </br></br>
  <ul class="list-group">
-    <% @team.events.each do |event| %>
+    <% @team.events.order("created_at DESC").each do |event| %>
       <li class="list-group-item"><%= link_to event.event_title, team_event_path(@team, event)%> <%= link_to "Edit Event", edit_team_event_path(@team, event)%></li>
     <%end%>
   </ul>

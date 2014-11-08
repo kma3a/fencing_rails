@@ -10,7 +10,7 @@
 <%end%>
 </br>
 <% @team.coaches.each do |coach| %>
-  <li class="list-group-item"><%= coach.name %> <% if current_coach.id == @team.headcoach_id %> <%= link_to "Remove", remove_coach_path({coach_id: coach.id}) %> <%end%></li>
+  <li class="list-group-item"><%= coach.name %> <% if current_coach.id == @team.headcoach_id %> <%= link_to "Remove", remove_coach_path({coach_id: coach.id}), class:"btn-sm"%> <%end%></li>
 <%end%>
 </div>
 <div class="col-md-6">
@@ -26,7 +26,7 @@
   <ul class="list-group">
   <% @team.students.each do |student| %>
     <li class="list-group-item">
-      <%=link_to student.name, student_path(student.secret_key) %> <% if current_coach.id == @team.headcoach_id %>  <%= link_to "Remove Student", remove_student_path({student_id: student.id})%>  <%= link_to "Edit Student", edit_student_path(student.secret_key) %> 
+      <%=link_to student.name, student_path(student.secret_key), class:"btn-lg" %> <% if current_coach.id == @team.headcoach_id %>  <%= link_to "Remove Student", remove_student_path({student_id: student.id}), class:"btn-sm"%> |  <%= link_to "Edit Student", edit_student_path(student.secret_key), class:"btn-sm" %> 
     <%end%>
     </li>
   <%end%>
@@ -41,7 +41,7 @@
   </br></br>
  <ul class="list-group">
     <% @team.events.order("created_at DESC").each do |event| %>
-      <li class="list-group-item"><%= link_to event.event_title, team_event_path(@team, event)%> <%= link_to "Edit Event", edit_team_event_path(@team, event)%></li>
+      <li class="list-group-item"><%= link_to event.event_title, team_event_path(@team, event), class:"btn-lg"%> <%= link_to "Edit Event", edit_team_event_path(@team, event), class:"btn-sm"%></li>
     <%end%>
   </ul>
 </div>

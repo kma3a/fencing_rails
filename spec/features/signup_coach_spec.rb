@@ -7,7 +7,7 @@ feature 'coach sign up' do
     fill_in("Name", with: "Coach Mark")
     fill_in("Email", with: "mark@gmail.com")
     fill_in("Password", with: "ameliasteal")
-    fill_in("Password confirmation", with: "ameliasteal")
+    fill_in("Confirm Password", with: "ameliasteal")
 
     expect{ click_button "Sign up"}.to change(Coach, :count).by(1)
   end
@@ -19,7 +19,7 @@ feature 'coach sign up' do
     fill_in("Name", with: "")
     fill_in("Email", with: "mark@gmail.com")
     fill_in("Password", with: "ameliasteal")
-    fill_in("Password confirmation", with: "ameliasteal")
+    fill_in("Confirm Password", with: "ameliasteal")
 
     expect{ click_button "Sign up"}.to change(Coach, :count).by(0)
   end
@@ -30,7 +30,7 @@ feature 'coach sign up' do
     fill_in("Name", with: "Coach Mark")
     fill_in("Email", with: "")
     fill_in("Password", with: "ameliasteal")
-    fill_in("Password confirmation", with: "ameliasteal")
+    fill_in("Confirm Password", with: "ameliasteal")
 
     expect{ click_button "Sign up"}.to change(Coach, :count).by(0)
   end
@@ -41,7 +41,7 @@ feature 'coach sign up' do
     fill_in("Name", with: "Coach Mark")
     fill_in("Email", with: "mark@gmail.com")
     fill_in("Password", with: "")
-    fill_in("Password confirmation", with: "ameliasteal")
+    fill_in("Confirm Password", with: "ameliasteal")
 
     expect{ click_button "Sign up"}.to change(Coach, :count).by(0)
   end
@@ -52,7 +52,7 @@ feature 'coach sign up' do
     fill_in("Name", with: "Coach Mark")
     fill_in("Email", with: "mark@gmail.com")
     fill_in("Password", with: "ameliasteal")
-    fill_in("Password confirmation", with: "")
+    fill_in("Confirm Password", with: "")
 
     expect{ click_button "Sign up"}.to change(Coach, :count).by(0)
   end
@@ -63,7 +63,7 @@ feature 'coach sign up' do
     fill_in("Name", with: "Coach Mark")
     fill_in("Email", with: "mark@gmail.com")
     fill_in("Password", with: "ameliasteal")
-    fill_in("Password confirmation", with: "ameliasteal")
+    fill_in("Confirm Password", with: "ameliasteal")
     click_button "Sign up"
 
     expect(current_path).to eq(coach_path(Coach.last))
@@ -75,7 +75,7 @@ feature 'coach sign up' do
     fill_in("Name", with: "Coach Mark")
     fill_in("Email", with: "")
     fill_in("Password", with: "ameliasteal")
-    fill_in("Password confirmation", with: "ameliasteal")
+    fill_in("Confirm Password", with: "ameliasteal")
     click_button "Sign up"
 
     expect(current_path).to eq('/coaches')

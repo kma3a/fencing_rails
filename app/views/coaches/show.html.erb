@@ -4,7 +4,7 @@
     <h4> Your Teams</h4>
       <ul>
         <% @coach.owned_teams.each do |team|%>
-          <li><%=link_to team.name, team_path(team) %> | <%= link_to "Edit", edit_team_path(team) %></li>
+          <li class="list-group-item"><%=link_to team.name, team_path(team), class:"btn-lg" %>  <%= link_to "Edit", edit_team_path(team), class:"btn-sm"%></li>
         <%end%>
       </ul>
   </div>
@@ -13,7 +13,7 @@
     <h4> Teams You Coach</h4>
    <ul>
      <% @coach.teams.each do |team| %>
-        <li><%=link_to  team.name, team_path(team) %></li>
+        <li class="list-group-item"><%=link_to  team.name, team_path(team), class:"btn-lg" %></li>
      <%end%>
    </ul>
   </div>

@@ -51,7 +51,7 @@ feature "event show page" do
       visit(bout_path(event, participant1.bout_number, participant4.bout_number))
       fill_in("participant1[bout_points]", with: 5)
       fill_in("participant2[bout_points]", with: 3)
-      choose('victory')
+      page.find(:css, '#victory_1').set(true)
       click_button('Submit')
       expect(page).to have_content("V5")
       expect(page).to have_content("D3")

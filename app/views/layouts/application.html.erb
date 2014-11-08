@@ -7,14 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if coach_signed_in? %>
-  <%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %>
-  <%= link_to "Profile", coach_path(current_coach.id)%>
-<% else %>
-  <%= link_to "Coach Sign In", new_coach_session_path  %>
-<% end %>
-<%= link_to "Home", root_path%> 
-<%= yield %>
-
+<nav class="navbar">
+  <div class="container">
+    <ul class="nav nav-pills pull-right">
+    <% if coach_signed_in? %>
+      
+      <li><%= link_to "Profile", coach_path(current_coach.id)%></li> 
+      <li><%= link_to "Edit Profile", edit_coach_registration_path(current_coach.id)%></li>
+      <li><%= link_to "Create_Team", new_team_path %></li>
+      <li><%= link_to "Add Student", new_student_path %></li>
+      <li><%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %></li>
+    <% else %>
+      <li><%= link_to "Sign In", new_coach_session_path  %></li>
+      <li><%= link_to "Sign Up", new_coach_registration_path  %></li>
+    <% end %>
+    </div>
+   <div class="center">
+    <%= link_to "Fencing Coach", root_path, {:class => "text-muted h2"} %>
+   </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="center">
+  <%= yield %>
+  </div>
+</div>
 </body>
 </html>

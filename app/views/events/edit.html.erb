@@ -1,9 +1,10 @@
 <h1>Edit Event</h1>
 <p>This Event has <%=@event.participant_count%> participants this cannot change</p>
 
+<div class="sign-template">
 <%= form_for [@team,@event] do |f| %>
   <%= f.label :event_title %></br>
-  <%= f.text_field :event_title%> </br>
+  <%= f.text_field :event_title, class:"form-control"%> </br>
   <ol>
   <% @event.participants.each do |part| %>
      <li><input type='text' name='event[participants][]' value="<%=part.student.secret_key%>" required='true'></li>
@@ -11,11 +12,11 @@
   </ol>
   <%= f.submit "Update Event", :class => 'button'%>
 <%end%>
+</div>
 
-
-<div class="team-students">
-<h3>Team <%=@team.name%>'s students</h3>
-<table>
+<div class="coach">
+<h3>Team's Students</h3>
+<table class="table table-bordered">
   <thead>
     <td>Name</td>
     <td>Key</td>

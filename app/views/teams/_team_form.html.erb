@@ -1,5 +1,4 @@
 <%= form_for @team do |f| %>
-  <%= f.label :team_name %> </br>
-  <%= f.text_field :name %></br>
-  <%= f.submit "Submit" %>
+  <%= f.text_field :name, placeholder:"Team Name", class:"form-control" %></br>
+  <%= f.submit "Submit", class:"btn" %>
 <% end %>

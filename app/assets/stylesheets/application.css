@@ -12,4 +12,46 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap.min
  */
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  }
+
+.btn-center {
+  margin-left: 40%;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+.sign-template {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.coach {
+ max-width: 300px;
+ }
+
+.list {
+  padding-left: 20px;
+  list-style-type: none;
+}
+.list-template {
+  max-height: 300px;
+  max-width: 330px;
+  overflow: auto;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.bout-table table {
+  width: 100%;
+}

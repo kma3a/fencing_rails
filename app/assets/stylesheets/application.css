@@ -10,9 +10,9 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap.min
  *= require_tree .
  *= require_self
- *= require bootstrap.min
  */
 
 .center {
@@ -55,3 +55,64 @@
 .bout-table table {
   width: 100%;
 }
+
+body {
+  background-color: #21252b;
+}
+
+.page {
+ background-color: #E54700;
+ width: 320px;
+ padding: 20px;
+ border-radius: 15px;
+}
+.sign-template {
+ background-color: #E54700;
+ padding: 20px;
+ border-radius: 15px;
+}
+
+.header {
+  border-bottom-style: ridge;
+  border-color: #F5814C;
+  border-width: 5px;
+}
+
+.h2,h3,p,label,h1,li,h5,h2,h4 {
+  color: #F5AB89;
+  }
+
+.h2:hover {
+  color: #F5814C;
+  text-decoration: none;
+}
+
+a {
+  color: #F5814C;
+}
+
+a:hover {
+  color: #955234;
+}
+
+.list-group-item {
+  background-color: transparent;
+  border: none;
+}
+.main {
+  padding-bottom: 50px;
+  border-radius: 15px;
+ } 
+
+ table {
+  background-color: #FFF;
+  color: #E54700;
+}
+
+.table-bordered {
+  border-color: #009A60;
+}
+  
+.sign-template>a,.sign-template>h3,.sign-template>h2,.sign-template>div>label,.sign-template>p {
+  color: #FFF;
+  }

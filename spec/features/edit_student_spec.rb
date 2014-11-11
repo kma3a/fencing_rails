@@ -15,7 +15,7 @@ feature "edit student" do
 
     scenario "Student edit button is for headcoaches on team page" do
       visit(team_path(team))
-      click_link("Edit Student")
+      click_link("Edit")
       expect(current_path).to eq(edit_student_path(student.secret_key))
     end
 

@@ -10,10 +10,17 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap.min
  *= require_tree .
  *= require_self
- *= require bootstrap.min
  */
+
+.nav {
+  margin-top: 20px;
+}
+
+.table {
+}
 
 .center {
   margin-left: auto;
@@ -27,7 +34,7 @@
 
 .intro {
   text-align: center;
-  margin-bottom: 10%;
+  margin-bottom: 30px;
 }
 
 .sign-template {
@@ -45,13 +52,81 @@
   list-style-type: none;
 }
 .list-template {
+  background-color: #952E00;
+  border-radius: 10px;
   max-height: 300px;
-  max-width: 330px;
+  max-width: 100px;
   overflow: auto;
   margin: 0 auto;
   padding: 15px;
+  background-color: #;
 }
 
-.bout-table table {
-  width: 100%;
+body {
+  background-color: #21252b;
+}
+
+.page {
+ background-color: #E54700;
+ width: 320px;
+ padding: 20px;
+ border-radius: 15px;
+}
+.sign-template {
+ background-color: #E54700;
+ padding: 20px;
+ border-radius: 15px;
+ margin-top: 50px;
+}
+
+.header {
+  border-bottom-style: ridge;
+  border-color: #F5814C;
+  border-width: 5px;
+}
+
+.h2,h3,p,label,h1,li,h5,h2,h4 {
+  color: #FFF;
+  }
+
+.h2:hover {
+  color: #F5814C;
+  text-decoration: none;
+}
+
+a {
+  color: #F2753D;
+}
+
+a:hover {
+  color: #955234;
+}
+
+.list-group-item {
+  background-color: transparent;
+  border: none;
+}
+
+.list-group-item > a {
+  color: #FFF;
+}
+.main {
+ margin-top: 30px;
+ background-color: #E54700;
+ padding: 20px;
+ border-radius: 15px;
+ max-width: 70%;
+ } 
+
+ table {
+  background-color: #FFF;
+  color: #E54700;
+}
+
+.sign-template>a,.sign-template>h3,.sign-template>h2,.sign-template>div>label,.sign-template>p {
+  color: #FFF;
+  }
+
+.content {
+ margin-left: 30px;
 }

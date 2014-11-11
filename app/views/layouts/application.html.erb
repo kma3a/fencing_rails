@@ -14,7 +14,7 @@
       
       <li><%= link_to "Profile", coach_path(current_coach.id)%></li> 
       <li><%= link_to "Edit Profile", edit_coach_registration_path(current_coach.id)%></li>
-      <li><%= link_to "Create_Team", new_team_path %></li>
+      <li><%= link_to "Create Team", new_team_path %></li>
       <li><%= link_to "Add Student", new_student_path %></li>
       <li><%= link_to "Sign Out", destroy_coach_session_path, :method => :delete %></li>
     <% else %>
@@ -22,15 +22,13 @@
       <li><%= link_to "Sign Up", new_coach_registration_path  %></li>
     <% end %>
     </div>
-   <div class="center">
+   <div class="center header">
     <%= link_to "Fencing Coach", root_path, {:class => "text-muted h2"} %>
    </div>
   </div>
 </nav>
 <div class="container">
-  <div class="center">
   <%= yield %>
-  </div>
 </div>
 </body>
 </html>

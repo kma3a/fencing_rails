@@ -17,7 +17,7 @@ feature "Remove Students to Team page" do
   
   scenario "removes name from list" do 
     visit(team_path(team.id))
-    click_link("Remove Student")
+    click_link("Remove")
     expect(page).to_not have_content("Tony")
   end
 

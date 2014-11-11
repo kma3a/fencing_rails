@@ -13,7 +13,7 @@ feature "Remove Coaches to Team page" do
   
   scenario "removes name from list" do 
     visit(team_path(team.id))
-    click_link("Remove")
+    click_link("Remove Coach")
     expect(page).to_not have_content("Tory")
   end
 

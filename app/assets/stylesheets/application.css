@@ -67,6 +67,7 @@ body {
 }
 
 .page {
+ margin-top: 20px;
  background-color: #E54700;
  width: 320px;
  padding: 20px;

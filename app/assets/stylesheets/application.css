@@ -15,6 +15,13 @@
  *= require_self
  */
 
+.nav {
+  margin-top: 20px;
+}
+
+.table {
+}
+
 .center {
   margin-left: auto;
   margin-right: auto;
@@ -27,7 +34,7 @@
 
 .intro {
   text-align: center;
-  margin-bottom: 10%;
+  margin-bottom: 30px;
 }
 
 .sign-template {
@@ -45,15 +52,14 @@
   list-style-type: none;
 }
 .list-template {
+  background-color: #952E00;
+  border-radius: 10px;
   max-height: 300px;
-  max-width: 330px;
+  max-width: 100px;
   overflow: auto;
   margin: 0 auto;
   padding: 15px;
-}
-
-.bout-table table {
-  width: 100%;
+  background-color: #;
 }
 
 body {
@@ -70,7 +76,7 @@ body {
  background-color: #E54700;
  padding: 20px;
  border-radius: 15px;
- margin-top: 20px;
+ margin-top: 50px;
 }
 
 .header {
@@ -80,7 +86,7 @@ body {
 }
 
 .h2,h3,p,label,h1,li,h5,h2,h4 {
-  color: #F5AB89;
+  color: #FFF;
   }
 
 .h2:hover {
@@ -89,7 +95,7 @@ body {
 }
 
 a {
-  color: #F5814C;
+  color: #F2753D;
 }
 
 a:hover {
@@ -100,9 +106,16 @@ a:hover {
   background-color: transparent;
   border: none;
 }
+
+.list-group-item > a {
+  color: #FFF;
+}
 .main {
-  padding-bottom: 50px;
-  border-radius: 15px;
+ margin-top: 30px;
+ background-color: #E54700;
+ padding: 20px;
+ border-radius: 15px;
+ max-width: 70%;
  } 
 
  table {
@@ -110,15 +123,10 @@ a:hover {
   color: #E54700;
 }
 
-.table-bordered {
-  border-color: #009A60;
-}
-  
 .sign-template>a,.sign-template>h3,.sign-template>h2,.sign-template>div>label,.sign-template>p {
   color: #FFF;
   }
 
 .content {
  margin-left: 30px;
- margin-top: 20px;
 }

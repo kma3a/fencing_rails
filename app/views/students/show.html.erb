@@ -1,14 +1,14 @@
+<div class="center main">
 <h1><%= @student.name%>'s Page</h1>
 <h3>Student Key: <%= @student.secret_key%></h3>
 <p> Please email the key to the student for their own record</p>
-<div>
-<div class="col-md-6">
+<div class="content sign-template col-md-6">
 <h3>Student's teams: </h3>
 <% @student.teams.each do |team| %>
   <li class="list-group-item"><%= team.name %></li>
 <%end%>
 </div>
-<div class="col-md-6">
+<div class="content sign-template col-md-6">
 <h3> Events Participated in:</h3>
 <% @student.events.order("created_at DESC").each do |event| %>
   <li class="list-group-item"><%= link_to event.event_title, team_event_path(event.team_id, event) %></li>

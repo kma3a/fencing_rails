@@ -1,3 +1,4 @@
+<div class="center main">
 <h3>Event: <%= @event.event_title %></h3>
 <p>The secret key to have other people view the event is: <%= @event.secret_key%></p>
 </br>
@@ -42,4 +43,5 @@
    <li class="list"> <%=link_to "#{part[0]} vs #{part[1]}", bout_path(@event,part[0],part[1]) %></li>
   <%end %>
 <%end%>
+</div>
 </div>

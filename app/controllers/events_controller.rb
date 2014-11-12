@@ -26,8 +26,12 @@ class EventsController < ApplicationController
   
   def publicshow
     @event = Event.find_by(secret_key: params[:event][:secret_key])
-    @participants = @event.participants.order("bout_number ASC")
-    render 'show'
+    if @event
+      @participants = @event.participants.order("bout_number ASC")
+      render 'show'
+    else
+      redirect_to "/"
+    end
   end
 
   def bout

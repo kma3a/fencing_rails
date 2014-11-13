@@ -32,7 +32,7 @@ feature "Add Coaches to Team page" do
     visit(team_path(team.id))
     fill_in('coach[email]', with: "poopy@otter.com")
     click_button "Add Coach"
-    expect(page).to have_content("Edit Otters")
+    expect(page).to have_content("Otters")
   end
 
 

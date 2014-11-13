@@ -148,7 +148,7 @@ RSpec.describe TeamsController, :type => :controller do
       end
 
       it 'should re-render edit' do
-        expect(subject).to render_template("teams/edit")
+        expect(subject).to render_template("teams/show")
       end
 
     end
@@ -161,7 +161,7 @@ RSpec.describe TeamsController, :type => :controller do
       end
 
       it 're-render edit' do
-        expect(subject).to render_template("teams/edit")
+        expect(subject).to render_template("teams/show")
       end
     end
   end

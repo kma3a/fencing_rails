@@ -44,7 +44,7 @@ class TeamsController < ApplicationController
       @team.coaches << @coach
       redirect_to team_path(@team.id)
     else
-      render 'edit'
+      render 'show'
     end
   end
 

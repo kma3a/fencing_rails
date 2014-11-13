@@ -131,3 +131,7 @@ a:hover {
 .content {
  margin-left: 30px;
 }
+
+input {
+ color: #000;
+}

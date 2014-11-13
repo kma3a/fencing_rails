@@ -28,7 +28,11 @@ class Event < ActiveRecord::Base
     participants = []
     array.each do |participant|
       student = Student.find_by(secret_key: participant)
-      participants << student if student != nil
+      if student != nil
+        participants << student
+      else
+        return "Error"
+      end
     end
     participants
   end

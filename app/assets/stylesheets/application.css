@@ -19,9 +19,6 @@
   margin-top: 20px;
 }
 
-.table {
-}
-
 .center {
   margin-left: auto;
   margin-right: auto;
@@ -86,6 +83,7 @@ body {
   border-width: 5px;
 }
 
+
 .h2,h3,p,label,h1,li,h5,h2,h4 {
   color: #FFF;
   }
@@ -119,10 +117,11 @@ a:hover {
  max-width: 70%;
  } 
 
- table {
+.table {
   background-color: #FFF;
   color: #E54700;
 }
+
 
 .sign-template>a,.sign-template>h3,.sign-template>h2,.sign-template>div>label,.sign-template>p {
   color: #FFF;

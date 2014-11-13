@@ -2,26 +2,26 @@
 <table class="table">
  <thead>
     <th>
-      <h4><%= @part1.student.name%></h4></br>
+      <%= @part1.student.name%>
     </th>
     <th>
-      <h4>VS.</h4>
+      VS.
     </th>
     <th>
-      <h4><%= @part2.student.name%></h4></br>
+      <%= @part2.student.name%>
     </th>
  </thead>
   <td>
-    <%= label_tag(:bout_points,"Touches")%>
+    Touches:
     <%= number_field(:participant1, :bout_points, value: 0,in: 0..5)%></br>
-    <%= label_tag(:vicotry, "Victory")%>
+    Victory:
     <%= radio_button_tag(:victory, "1", required: true)%>
   </td><td>
   </td>
   <td>
-    <%= label_tag(:bout_points,"Touches")%>
+    Touches:
     <%= number_field(:participant2, :bout_points, value: 0, in: 0..5)%> </br>
-    <%= label_tag(:vicotry, "Victory")%>
+    Victory:
     <%= radio_button_tag(:victory, "2", required: true)%>
   </td>
 </table>

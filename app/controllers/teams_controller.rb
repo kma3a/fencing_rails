@@ -63,6 +63,7 @@ class TeamsController < ApplicationController
       @team.students << @student
       redirect_to team_path(@team)
     else
+      @team.errors.add(:student, "not found")
       render 'show'
     end
   end

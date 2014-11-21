@@ -16,6 +16,10 @@ class EventsController < ApplicationController
       end
       redirect_to team_event_path(@team, @event.id)
     else 
+      if participants == "Error"
+        @event.errors.add(:participants, "must have valid Secret Key")
+      end
+      @event.errors.add_on_blank(:event_title)
       render 'new'
     end
   end

@@ -46,4 +46,12 @@ feature "Add students" do
     expect(page). to have_content(student.name)
   end
 
+  scenario "fill in form with invalid attributes" do
+    visit(new_student_path)
+    fill_in('student[name]', with: '')
+    click_button("Create Student")
+    expect(page).to have_content("Name can't be blank")
+  end
+
+
 end

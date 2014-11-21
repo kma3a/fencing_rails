@@ -44,6 +44,7 @@ class TeamsController < ApplicationController
       @team.coaches << @coach
       redirect_to team_path(@team.id)
     else
+      @team.errors.add(:coach, "not found")
       render 'show'
     end
   end

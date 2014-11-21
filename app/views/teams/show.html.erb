@@ -5,6 +5,11 @@
 <h3>Coaches:</h3>
 <% if  current_coach.id == @team.headcoach_id%>
   <%= form_tag(controller: "teams", action: "add_coach", method: "get") do %>
+  <% if @team.errors %>
+    <% @team.errors.full_messages.each do |message|%>
+      <p><%=message%></p>
+    <%end%>
+  <%end%>
     <%= email_field(:coach, :email, class:"form", placeholder:"Coach's Email") %>
    <%= submit_tag("Add Coach") %>
   <% end %>

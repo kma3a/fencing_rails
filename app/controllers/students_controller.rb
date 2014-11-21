@@ -20,7 +20,11 @@ class StudentsController < ApplicationController
 
   def publicshow
     @student = Student.find_by(secret_key: params[:student][:secret_key])
-    render 'show'
+    if @student
+      render 'show'
+    else
+      redirect_to "/", :flash => {:error => "Student not found"}
+    end
   end
 
   def edit

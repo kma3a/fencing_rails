@@ -51,6 +51,18 @@ feature "Create events" do
       click_button("Update Event")
       expect(current_path).to eq(team_event_path(team, event))
     end
+
+    scenario "fill in form with invalid attrubutes" do
+      visit(edit_team_event_path(team, event))
+      fill_in('event[event_title]', with: "")
+      page.all(:fillable_field, 'event[participants][]')[0].set(student2.secret_key)
+      page.all(:fillable_field, 'event[participants][]')[1].set(student3.secret_key)
+      page.all(:fillable_field, 'event[participants][]')[2].set(student1.secret_key)
+      page.all(:fillable_field, 'event[participants][]')[3].set("welrjwlek")
+      click_button("Update Event")
+      expect(page).to have_content("Participants must have valid Student Key")
+      expect(page).to have_content("Event title can't be blank")
+    end
     
     scenario "expect participants to change" do
       visit(edit_team_event_path(team, event))

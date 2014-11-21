@@ -46,4 +46,19 @@ feature "Add students" do
     expect(page). to have_content(student.name)
   end
 
+  scenario "add student to team on team show page invalid attributes" do
+    visit(team_path(team))
+    fill_in('student[secret_key]', with: "hkjhk")
+    click_button("Add Student")
+    expect(page). to have_content("Student not found")
+  end
+
+  scenario "fill in form with invalid attributes" do
+    visit(new_student_path)
+    fill_in('student[name]', with: '')
+    click_button("Create Student")
+    expect(page).to have_content("Name can't be blank")
+  end
+
+
 end

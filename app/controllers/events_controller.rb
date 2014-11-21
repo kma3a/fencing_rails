@@ -9,12 +9,17 @@ class EventsController < ApplicationController
   def create
     @team = Team.find(params[:team_id])
     @event = Event.new({event_title: params[:event][:event_title],participant_count: params[:event]["participants"].count, team_id: params[:team_id]})
-    if @event.save
-      @event.get_participants(params[:event]["participants"]).each_with_index do |part,index|
-         Participant.create(student_id: part.id, event_id: @event.id, bout_number: index + 1)
+    participants = @event.get_participants(params[:event]["participants"])
+    if participants != "Error" && @event.save
+      participants.each_with_index do |part,index|
+        part = Participant.create(student_id: part.id, event_id: @event.id, bout_number: index + 1)
       end
       redirect_to team_event_path(@team, @event.id)
-    else
+    else 
+      if participants == "Error"
+        @event.errors.add(:participants, "must have valid Student Key")
+      end
+      @event.errors.add_on_blank(:event_title)
       render 'new'
     end
   end
@@ -26,8 +31,12 @@ class EventsController < ApplicationController
   
   def publicshow
     @event = Event.find_by(secret_key: params[:event][:secret_key])
-    @participants = @event.participants.order("bout_number ASC")
-    render 'show'
+    if @event
+      @participants = @event.participants.order("bout_number ASC")
+      render 'show'
+    else
+      redirect_to "/", :flash => {:error => "Event not found"}
+    end
   end
 
   def bout
@@ -60,13 +69,16 @@ class EventsController < ApplicationController
     @team = Team.find(params[:team_id])
     @event = Event.find(params[:id])
     @event.update({event_title: params[:event][:event_title]})
-    if @event.save
-      @event.get_participants(params[:event]["participants"]).each_with_index do |part,index|
-         participant = Participant.find_by(event_id: @event.id, bout_number: index + 1)
-         participant.update(student_id: part.id)
+    participants = @event.get_participants(params[:event]["participants"])
+    if participants != "Error" && @event.save
+      participants.each_with_index do |part,index|
+        @event.participants[index].update(student_id: part.id)
       end
       redirect_to team_event_path(@team, @event.id)
     else
+      if participants == "Error"
+        @event.errors.add(:participants, "must have valid Student Key")
+      end
       render 'edit'
     end
   end

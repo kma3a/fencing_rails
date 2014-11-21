@@ -5,6 +5,11 @@
 <h3>Coaches:</h3>
 <% if  current_coach.id == @team.headcoach_id%>
   <%= form_tag(controller: "teams", action: "add_coach", method: "get") do %>
+  <% if @team.errors[:coach] %>
+      <%@team.errors.full_messages_for(:coach).each do |message|%>
+        <p><%=message%></p>
+      <%end%>
+  <%end%>
     <%= email_field(:coach, :email, class:"form", placeholder:"Coach's Email") %>
    <%= submit_tag("Add Coach") %>
   <% end %>
@@ -18,14 +23,19 @@
   <h3>Students:</h3>
   <div>
   <% if current_coach.id == @team.headcoach_id %>
-      <%= form_tag(controller: "teams", action: "add_student", method: "post") do %>
-      <%= text_field(:student, :secret_key, placeholder:"Student's Key") %>
+     <%= form_tag(controller: "teams", action: "add_student", method: "post") do %>
+      <% if @team.errors[:student] %>
+        <% @team.errors.full_messages_for(:student).each do |message|%>
+         <p><%=message%></p>
+        <%end%>
+     <%end%>
+    <%= text_field(:student, :secret_key, placeholder:"Student's Key") %>
       <%= submit_tag("Add Student") %>
     <% end %>
   <%end%>
   </div> </br>
   <ul class="list-group">
-  <% @team.students.each do |student| %>
+  <% @team.students.order("name DESC").each do |student| %>
     <li class="list-group-item">
       <%=link_to student.name, student_path(student.secret_key), class:"btn-lg" %> <% if current_coach.id == @team.headcoach_id %>  <%= link_to "Remove", remove_student_path({student_id: student.id}), class:"btn-sm"%> |  <%= link_to "Edit", edit_student_path(student.secret_key), class:"btn-sm" %> 
     <%end%>

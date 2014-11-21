@@ -1,7 +1,14 @@
+<div class="center">
 <h3>Create Event For Team <%= @team.name%></h3>
 <p>Events must have minimum of 4 participants and maximum of 8</p>
 <div class="sign-template">
 <%= form_for [@team,@event] do |f| %>
+  <% if @event.errors %>
+    <p> Error:</p>
+    <% @event.errors.full_messages.each do |message| %>
+      <li><%=message%></li>
+    <%end%>
+  <%end%>
   <%= f.text_field :event_title, placeholder:"Event Title", class:"form-control"%> </br>
   <%= f.label :participants %></br>
   <ol>
@@ -29,4 +36,5 @@
   </tr>
   <%end%>
 </table>
+</div>
 </div>

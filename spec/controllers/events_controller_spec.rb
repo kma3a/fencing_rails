@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe EventsController, :type => :controller do
   let(:coach) {Coach.create({name: 'matt', email: 'vanillabear@google.com', password: 'otterpoop', password_confirmation: 'otterpoop'})}
   let(:team) {Team.create({name: "Otters", headcoach_id: coach.id})}
-    let(:student1) {Student.new({name: "Kelly"})}
-    let(:student2) {Student.new({name: "Sara"})}
-    let(:student3) {Student.new({name: "Zack"})}
-    let(:student4) {Student.new({name: "Ben"})}
+    let(:student1) {Student.create({name: "Kelly"})}
+    let(:student2) {Student.create({name: "Sara"})}
+    let(:student3) {Student.create({name: "Zack"})}
+    let(:student4) {Student.create({name: "Ben"})}
 
 
   before {sign_in coach}
@@ -34,6 +34,17 @@ RSpec.describe EventsController, :type => :controller do
         expect(subject).to redirect_to(team_event_path(team, Event.last))
       end
     end  
+
+    context "invalid attributes" do
+      subject {post :create, team_id: team.id, event: {event_title: "1/02/14",team_id: team.id, participants: [student1.secret_key, student2.secret_key, "wekjlwwer", student4.secret_key]}}
+      it "should not create event" do
+        expect{subject}.to_not change(Event, :count)
+      end
+
+      it "redirects to the event new page" do
+        expect(subject).to render_template(:new)
+      end
+    end
   end
 
   describe 'GET #edit' do

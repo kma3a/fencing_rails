@@ -1,4 +1,9 @@
 <%= form_for @team do |f| %>
+  <% if @team.errors %>
+    <% @team.errors.full_messages.each do |message| %>
+      <p><%=message%></p>
+    <%end%>
+  <%end%>
   <%= f.text_field :name, placeholder:"Team Name", class:"form-control" %></br>
   <%= f.submit "Submit", class:"btn" %>
 <% end %>

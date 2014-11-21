@@ -3,6 +3,12 @@
 
 <div class="sign-template">
 <%= form_for [@team,@event] do |f| %>
+  <% if @event.errors %>
+    <p> Error:</p>
+    <% @event.errors.full_messages.each do |message| %>
+      <li><%=message%></li>
+    <%end%>
+  <%end%>
   <%= f.label :event_title %></br>
   <%= f.text_field :event_title, class:"form-control"%> </br>
   <ol>

@@ -37,6 +37,13 @@ feature "edit student" do
       click_button "Create Student"
       expect(page).to have_content("Kenny")
     end
-      
+
+     scenario "with render edit page if name is invalid" do
+      visit(edit_student_path(student.secret_key))
+      fill_in('student[name]', with: "")
+      click_button "Create Student"
+      expect(page).to have_content("Name can't be blank")
+    end
+     
 end
 

@@ -1,9 +1,4 @@
 <div class="sign-template">
 <h3>Create A New Student</h3>
-<% if @student.errors %>
-  <% @student.errors.full_messages.each do |message| %>
-    <p><%=message%></p>
-  <%end%>
-<%end%>
 <%= render 'student_form' %>
 </div>

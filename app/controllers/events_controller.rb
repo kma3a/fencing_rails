@@ -35,7 +35,7 @@ class EventsController < ApplicationController
       @participants = @event.participants.order("bout_number ASC")
       render 'show'
     else
-      redirect_to "/"
+      redirect_to "/", :flash => {:error => "Event not found"}
     end
   end
 

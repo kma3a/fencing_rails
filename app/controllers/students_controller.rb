@@ -23,7 +23,7 @@ class StudentsController < ApplicationController
     if @student
       render 'show'
     else
-      redirect_to "/"
+      redirect_to "/", :flash => {:error => "Student not found"}
     end
   end
 

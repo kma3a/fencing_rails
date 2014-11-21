@@ -17,7 +17,6 @@ feature "look at students show page" do
     let(:participant3) {Participant.create({student_id: student3.id, event_id: event.id, bout_number: 3})}
     let(:participant4) {Participant.create({student_id: student4.id, event_id: event.id, bout_number: 4})}
 
-    before{login_as(headcoach, scope: :coach)}
     before{headcoach.teams << team}
     before{team.students << student1}
     before{team.students << student3}
@@ -40,6 +39,7 @@ feature "look at students show page" do
     fill_in("student[secret_key]", with: "wseljseerlw")
     click_button("View Student")
     expect(current_path).to eq(root_path)
+    expect(page).to have_content("Student not found")
 
   end
 

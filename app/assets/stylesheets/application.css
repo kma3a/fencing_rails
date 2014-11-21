@@ -134,3 +134,8 @@ a:hover {
 input {
  color: #000;
 }
+
+.error {
+  text-align: center;
+  color: #FF0;
+}

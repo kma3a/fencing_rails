@@ -53,5 +53,14 @@ feature "creat new team" do
     click_button "Submit"
     expect(current_path).to eq("/teams")
   end
+  
+  scenario "will not save if invalid" do
+  
+    visit('/teams/new')
+
+    fill_in('team[name]', with: "")
+    click_button "Submit"
+    expect(page).to have_content("Name can't be blank")
+  end
 
 end

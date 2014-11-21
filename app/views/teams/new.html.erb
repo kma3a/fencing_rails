@@ -1,10 +1,5 @@
 <div class="sign-template">
   <h3> Create a New Team </h3>
-  <% if @team.errors %>
-    <% @team.errors.full_messages.each do |message| %>
-      <p><%=message%></p>
-    <%end%>
-  <%end%>
   <%= render 'team_form' %>
 
 </div>

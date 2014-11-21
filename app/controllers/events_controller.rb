@@ -69,13 +69,16 @@ class EventsController < ApplicationController
     @team = Team.find(params[:team_id])
     @event = Event.find(params[:id])
     @event.update({event_title: params[:event][:event_title]})
-    if @event.save
-      @event.get_participants(params[:event]["participants"]).each_with_index do |part,index|
-         participant = Participant.find_by(event_id: @event.id, bout_number: index + 1)
-         participant.update(student_id: part.id)
+    participants = @event.get_participants(params[:event]["participants"])
+    if participants != "Error" && @event.save
+      participants.each_with_index do |part,index|
+        @event.participants[index].update(student_id: part.id)
       end
       redirect_to team_event_path(@team, @event.id)
     else
+      if participants == "Error"
+        @event.errors.add(:participants, "must have valid Student Key")
+      end
       render 'edit'
     end
   end

@@ -42,7 +42,7 @@ feature "Create events" do
       expect(current_path).to eq(team_event_path(team, Event.last))
     end
 
-    scenario "fill in form with invalid arributes" do
+    scenario "fill in form with invalid participant" do
       visit(new_team_event_path(team))
       fill_in('event[event_title]', with: "10/02/14")
       page.all(:fillable_field, 'event[participants][]')[0].set(student1.secret_key)
@@ -51,6 +51,33 @@ feature "Create events" do
       page.all(:fillable_field, 'event[participants][]')[3].set("welrjWEr23")
       click_button("Create Event")
       expect(current_path).to eq("/teams/#{team.id}/events")
-      expect(page).to have_content("Create Event")
+      expect(page).to have_content("Participants must have valid Student Key")
     end
+
+    scenario "form with no event[title]" do
+      visit(new_team_event_path(team))
+      fill_in('event[event_title]', with: "")
+      page.all(:fillable_field, 'event[participants][]')[0].set(student1.secret_key)
+      page.all(:fillable_field, 'event[participants][]')[1].set(student2.secret_key)
+      page.all(:fillable_field, 'event[participants][]')[2].set(student3.secret_key)
+      page.all(:fillable_field, 'event[participants][]')[3].set(student4.secret_key)
+      click_button("Create Event")
+      expect(current_path).to eq("/teams/#{team.id}/events")
+      expect(page).to have_content("Event title can't be blank")
+    end
+
+    scenario "fill in form with invalid arributes" do
+      visit(new_team_event_path(team))
+      fill_in('event[event_title]', with: "")
+      page.all(:fillable_field, 'event[participants][]')[0].set(student1.secret_key)
+      page.all(:fillable_field, 'event[participants][]')[1].set(student2.secret_key)
+      page.all(:fillable_field, 'event[participants][]')[2].set(student3.secret_key)
+      page.all(:fillable_field, 'event[participants][]')[3].set("welrjWEr23")
+      click_button("Create Event")
+      expect(current_path).to eq("/teams/#{team.id}/events")
+      expect(page).to have_content("Participants must have valid Student Key")
+      expect(page).to have_content("Event title can't be blank")
+    end
+
+
 end

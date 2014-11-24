@@ -3,9 +3,12 @@ Welcome to Fencing Coach Rails!
 
 My personal project that I have been working on.
 
-This app is designed to help fencing clubs with organizing and managing pools for the teams.
-It also will show statisitcs when I get there and has an easy display so students can see how they should write down pool scores.
+This app is designed to help fencing clubs with organizing and managing pool sheets for the teams.
+
+I would also like it to be able to show statistics for each student and use that data to help coaches figure out how to help the students.  It will also allow students to see how they should write down pool scores.
 
 This app uses ruby v 2.1.1p.76 and Rails v 4.1.0
 
 The database is postgres
+
+It is currently running on http://fencingcoach.herokuapp.com/.

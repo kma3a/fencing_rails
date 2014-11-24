@@ -59,11 +59,20 @@ class TeamsController < ApplicationController
   def add_student
     @team = Team.find(params[:id])
     @student = Student.find_by({secret_key: params[:student][:secret_key]})
-    if @student && !@team.students.include?(@student)
+    if !@student 
+      @student = Student.new(name: params[:student][:secret_key])
+      if @student.save
+        @team.students << @student
+        redirect_to team_path(@team)
+      else
+        @team.errors.add(:student, "not found")
+        render 'show'
+      end
+    elsif !@team.students.include?(@student)
       @team.students << @student
       redirect_to team_path(@team)
     else
-      @team.errors.add(:student, "not found")
+      @team.errors.add(:student, "already added")
       render 'show'
     end
   end

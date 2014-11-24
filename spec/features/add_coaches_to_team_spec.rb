@@ -35,6 +35,4 @@ feature "Add Coaches to Team page" do
     expect(page).to have_content("Coach not found")
   end
 
-
-
 end

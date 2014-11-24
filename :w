@@ -9,11 +9,9 @@ feature "Add students" do
     let(:coach) {Coach.create({name: "Tory", email: 'tory@otters.com', password: 'docotter', password_confirmation: 'docotter'})}
     let(:team) {Team.create({name: "Otters", headcoach_id: headcoach.id})}
     let(:student) {Student.create({name: "Percy"})}
-    let(:student2) {Student.create({name: "Steve"})}
 
     before{login_as(headcoach, scope: :coach)}
     before{headcoach.teams << team}
-    before{team.students << student2}
   
   scenario "can get to the student create page" do
     visit(coach_path(headcoach.id))
@@ -52,23 +50,15 @@ feature "Add students" do
     visit(team_path(team))
     fill_in('student[secret_key]', with: "Jessica")
     click_button("Add Student")
-    expect(page). to have_content("Jessica")
-    click_link("Jessica")
-    expect(page).to have_content("Student Key")
+    expect(page). to have_content(student.name)
   end
 
-  scenario "wont add student that is already on a team" do
-    visit(team_path(team))
-    fill_in('student[secret_key]', with: student2.secret_key)
-    click_button("Add Student")
-    expect(page).to have_content("Student already added")
-  end
 
   scenario "add student to team on team show page invalid attributes" do
     visit(team_path(team))
-    fill_in('student[secret_key]', with: "")
+    fill_in('student[secret_key]', with: "hkjhk")
     click_button("Add Student")
-    expect(page).to have_content("Student not found")
+    expect(page). to have_content("Student not found")
   end
 
   scenario "fill in form with invalid attributes" do

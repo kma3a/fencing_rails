@@ -31,11 +31,12 @@
      <%end%>
     <%= text_field(:student, :secret_key, placeholder:"Student's Key") %>
       <%= submit_tag("Add Student") %>
+      <p>Add Student Key or put in new student name</p>
     <% end %>
   <%end%>
   </div> </br>
   <ul class="list-group">
-  <% @team.students.order("name DESC").each do |student| %>
+  <% @team.students.order("name ASC").each do |student| %>
     <li class="list-group-item">
       <%=link_to student.name, student_path(student.secret_key), class:"btn-lg" %> <% if current_coach.id == @team.headcoach_id %>  <%= link_to "Remove", remove_student_path({student_id: student.id}), class:"btn-sm"%> |  <%= link_to "Edit", edit_student_path(student.secret_key), class:"btn-sm" %> 
     <%end%>

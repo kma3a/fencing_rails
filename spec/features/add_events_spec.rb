@@ -21,13 +21,13 @@ feature "Create events" do
 
     scenario "On the team page there should be a create event button" do
       visit(team_path(team))
-      click_link("Create Event")
+      click_link("Create Pool")
       expect(current_path).to eq(new_team_event_path(team))
     end
 
     scenario "On event page there should create event words" do
       visit(team_path(team))
-      click_link("Create Event")
+      click_link("Create Pool")
       expect(page).to have_content("Create Event")
     end
 

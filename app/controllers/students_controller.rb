@@ -16,6 +16,8 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find_by(secret_key: params[:id])
+    @teams = @student.teams
+    @events = @student.events
   end
 
   def publicshow

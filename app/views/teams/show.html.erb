@@ -1,15 +1,11 @@
 <div class="center main">
+  <p class="error center"> <%= flash[:error]%></p>
 <h1 class="intro"><%= @team.name %> </h1>
 <h3>Headcoach: <%= @team.headcoach.name %> </h3>
 <div class="coach">
 <h3>Coaches:</h3>
 <% if  current_coach.id == @team.headcoach_id%>
   <%= form_tag(controller: "teams", action: "add_coach", method: "get") do %>
-  <% if @team.errors[:coach] %>
-      <%@team.errors.full_messages_for(:coach).each do |message|%>
-        <p><%=message%></p>
-      <%end%>
-  <%end%>
     <%= email_field(:coach, :email, class:"form", placeholder:"Coach's Email") %>
    <%= submit_tag("Add Coach") %>
   <% end %>
@@ -24,11 +20,6 @@
   <div>
   <% if current_coach.id == @team.headcoach_id %>
      <%= form_tag(controller: "teams", action: "add_student", method: "post") do %>
-      <% if @team.errors[:student] %>
-        <% @team.errors.full_messages_for(:student).each do |message|%>
-         <p><%=message%></p>
-        <%end%>
-     <%end%>
     <%= text_field(:student, :secret_key, placeholder:"Student's Key") %>
       <%= submit_tag("Add Student") %>
       <p>Add Student Key or put in new student name</p>

@@ -47,8 +47,7 @@ class TeamsController < ApplicationController
       @team.coaches << @coach
       redirect_to team_path(@team.id)
     else
-      @team.errors.add(:coach, "not found")
-      render 'show'
+      redirect_to  team_path(params[:id]), :flash => {:error => "Coach not found"}
     end
   end
 
@@ -68,15 +67,13 @@ class TeamsController < ApplicationController
         @team.students << @student
         redirect_to team_path(@team)
       else
-        @team.errors.add(:student, "not found")
-        render 'show'
+        redirect_to  team_path(params[:id]), :flash => {:error => "Invalid Student name"}
       end
     elsif !@team.students.include?(@student)
       @team.students << @student
       redirect_to team_path(@team)
     else
-      @team.errors.add(:student, "already added")
-      render 'show'
+      redirect_to  team_path(params[:id]), :flash => {:error => "Student already added"}
     end
   end
 

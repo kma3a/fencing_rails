@@ -14,7 +14,8 @@ feature "Add students" do
     before{login_as(headcoach, scope: :coach)}
     before{headcoach.teams << team}
     before{team.students << student2}
-  
+=begin 
+  *note commented out tests for new student incase I want to re-add it in the future
   scenario "can get to the student create page" do
     visit(coach_path(headcoach.id))
     click_link("Add Student")
@@ -40,7 +41,7 @@ feature "Add students" do
     click_button("Create Student")
     expect(page).to have_content("Percy's Page")
   end
-
+=end
   scenario "add student to team on team show page" do
     visit(team_path(team))
     fill_in('student[secret_key]', with: student.secret_key)
@@ -68,15 +69,15 @@ feature "Add students" do
     visit(team_path(team))
     fill_in('student[secret_key]', with: "")
     click_button("Add Student")
-    expect(page).to have_content("Student not found")
+    expect(page).to have_content("Invalid Student name")
   end
-
+=begin
   scenario "fill in form with invalid attributes" do
     visit(new_student_path)
     fill_in('student[name]', with: '')
     click_button("Create Student")
     expect(page).to have_content("Name can't be blank")
   end
-
+=end
 
 end

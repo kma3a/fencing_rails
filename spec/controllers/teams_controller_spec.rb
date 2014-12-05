@@ -148,7 +148,7 @@ RSpec.describe TeamsController, :type => :controller do
       end
 
       it 'should re-render edit' do
-        expect(subject).to render_template("teams/show")
+        expect(subject).to redirect_to(team_path(@team.id))
       end
 
     end
@@ -161,7 +161,7 @@ RSpec.describe TeamsController, :type => :controller do
       end
 
       it 're-render edit' do
-        expect(subject).to render_template("teams/show")
+        expect(subject).to redirect_to(team_path(@team.id))
       end
     end
   end
@@ -216,7 +216,7 @@ RSpec.describe TeamsController, :type => :controller do
       end
       
       it 'should re-render page' do
-        expect(subject).to render_template("teams/show")
+        expect(subject).to redirect_to(team_path(@team))
       end
     end
 
@@ -227,7 +227,7 @@ RSpec.describe TeamsController, :type => :controller do
       end
 
       it "should redirect to the team page" do
-        expect(subject).to render_template("teams/show")
+        expect(subject).to redirect_to(team_path(@team))
       end
     end
   end

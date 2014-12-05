@@ -23,7 +23,7 @@ class StudentsController < ApplicationController
   def publicshow
     @student = Student.find_by(secret_key: params[:student][:secret_key])
     if @student
-      render 'show'
+      redirect_to(student_path(@student.secret_key))
     else
       redirect_to "/", :flash => {:error => "Student not found"}
     end

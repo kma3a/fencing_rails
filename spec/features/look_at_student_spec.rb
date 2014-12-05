@@ -30,7 +30,7 @@ feature "look at students show page" do
     visit(root_path)
     fill_in("student[secret_key]", with: student1.secret_key)
     click_button("View Student")
-    expect(current_path).to eq("/student")
+    expect(current_path).to eq("/students/#{student1.secret_key}")
     expect(page).to have_content(student1.name)
   end
 

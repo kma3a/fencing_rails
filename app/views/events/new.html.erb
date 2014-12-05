@@ -22,19 +22,5 @@
 <%end%>
 </div>
 
-<div class="coach">
-<h3>Team's Students</h3>
-<table class="table table-bordered">
-  <thead>
-    <td>Name</td>
-    <td>Key</td>
-  </thead>
-  <% @team.students.each do |student| %>
-  <tr>
-    <td><%= student.name%></td>
-    <td><%= student.secret_key%></td>
-  </tr>
-  <%end%>
-</table>
-</div>
+<%= render 'student_roster' %>
 </div>
